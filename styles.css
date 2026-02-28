@@ -1,0 +1,1248 @@
+/* ═══════════════════════════════════════════════
+   ESTILOS GLOBALES — El Continental CODM
+   ═══════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap');
+
+/* ── RESET & VARIABLES ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold:    #FFD700;
+  --gold2:   #FFA500;
+  --accent:  #e6f702;
+  --silver:  #C0C0C0;
+  --bronze:  #CD7F32;
+  --bg:      #000;
+  --card:    #111;
+  --card2:   #151515;
+  --border:  rgba(255,215,0,0.25);
+  --text:    rgba(255,255,255,0.85);
+  --muted:   rgba(255,255,255,0.5);
+  --danger:  #ff4d4d;
+  --success: #22c55e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,215,0,0.08) 0%, transparent 60%),
+    repeating-linear-gradient(0deg,   transparent, transparent 80px, rgba(255,215,0,0.015) 80px, rgba(255,215,0,0.015) 81px),
+    repeating-linear-gradient(90deg,  transparent, transparent 80px, rgba(255,215,0,0.015) 80px, rgba(255,215,0,0.015) 81px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── INDICADOR DE ACTUALIZACIÓN ── */
+#refreshIndicator {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  z-index: 9000;
+  background: rgba(0,0,0,0.85);
+  border: 1.5px solid var(--gold);
+  border-radius: 30px;
+  padding: 0.45rem 1rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+  transition: opacity 0.4s;
+}
+#refreshIndicator .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s infinite;
+}
+#refreshIndicator.loading .dot { background: var(--gold); animation: spin 1s linear infinite; border-radius: 0; width: 8px; height: 8px; border: 2px solid var(--gold); border-top-color: transparent; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+@keyframes spin  { to { transform: rotate(360deg); } }
+
+/* ── NAVBAR ── */
+nav {
+  background: rgba(0,0,0,0.92);
+  border-bottom: 2px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(230,247,2,0.6);
+}
+.logo span { color: var(--gold); }
+
+.nav-links { display: flex; list-style: none; gap: 0.3rem; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+.nav-links a:hover  { color: var(--gold); background: rgba(255,215,0,0.08); }
+.nav-links a.active { color: var(--gold); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  padding: 5px;
+  background: none;
+  border: none;
+}
+.hamburger span { width: 26px; height: 2.5px; background: var(--gold); border-radius: 3px; transition: all 0.35s ease; display: block; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ── HERO GENÉRICO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-shadow: 0 0 40px rgba(255,215,0,0.4);
+}
+.hero p { color: var(--text); font-size: 1.05rem; margin-top: 0.5rem; letter-spacing: 1px; }
+.hero-count {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 0.8rem;
+  letter-spacing: 2px;
+}
+
+/* ── CONTAINER ── */
+.container { position: relative; z-index: 1; max-width: 1400px; margin: 2rem auto; padding: 0 2rem 4rem; }
+
+/* ── BUTTONS ── */
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000; padding: 0.9rem 2.2rem; border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+  transition: all 0.3s; box-shadow: 0 5px 25px rgba(255,215,0,0.4);
+}
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(255,215,0,0.6); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: transparent; color: var(--gold); border: 2px solid var(--gold);
+  padding: 0.9rem 2.2rem; border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--gold); color: #000; transform: translateY(-3px); }
+
+/* ── FOOTER ── */
+footer { position: relative; z-index: 1; background: #000; border-top: 2px solid var(--gold); padding: 3rem 2rem 1.5rem; }
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 2.5rem; margin-bottom: 2rem; }
+.footer-col h3 { font-family: 'Bebas Neue', cursive; font-size: 1.2rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 1rem; }
+.footer-col p  { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.6; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.5rem; }
+.footer-col ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+.footer-col ul a:hover { color: var(--gold); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,215,0,0.15); color: var(--muted); font-size: 0.85rem; }
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(30px);}  to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn   { from{opacity:0;transform:translateX(-20px);} to{opacity:1;transform:translateX(0);} }
+@keyframes logoPulse{ 0%,100%{box-shadow:0 0 40px rgba(255,215,0,0.4);} 50%{box-shadow:0 0 80px rgba(255,215,0,0.8);} }
+
+/* ══════════════════════════════════════════════
+   INDEX.HTML
+   ══════════════════════════════════════════════ */
+.hero-index { padding: 5rem 2rem 4rem; }
+.hero-logo-ph {
+  width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--gold);
+  margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', cursive; font-size: 3rem; color: var(--gold);
+  background: linear-gradient(135deg,#111,#1a1a00);
+  box-shadow: 0 0 60px rgba(255,215,0,0.5);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+.hero-tag      { font-family:'Orbitron',sans-serif;font-size:0.7rem;letter-spacing:6px;color:var(--accent);text-transform:uppercase;margin-bottom:1rem;opacity:0.8; }
+.hero-title    { font-family:'Bebas Neue',cursive;font-size:clamp(3rem,8vw,6rem);color:var(--gold);line-height:0.9;text-shadow:0 0 40px rgba(255,215,0,0.5);letter-spacing:4px;margin-bottom:0.5rem; }
+.hero-subtitle { font-size:1.2rem;color:var(--accent);letter-spacing:3px;margin-bottom:1.5rem;font-weight:600;text-transform:uppercase; }
+.hero-desc     { font-size:1.05rem;color:var(--text);max-width:650px;margin:0 auto 3rem;line-height:1.7; }
+.hero-btns     { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+
+.stats-bar { position:relative;z-index:1;padding:2rem;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.05),transparent);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.stats-grid { max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem; }
+.stat-item { text-align:center; }
+.stat-num  { font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:900;color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,0.5); }
+.stat-lbl  { font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:0.2rem; }
+
+.section { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:3rem 2rem; }
+.section-header { text-align:center;margin-bottom:2.5rem; }
+.section-header h2 { font-family:'Bebas Neue',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--gold);letter-spacing:3px;margin-bottom:0.3rem; }
+.section-header p  { color:var(--muted);font-size:1rem;letter-spacing:1px; }
+.section-divider   { width:80px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0.8rem auto 0; }
+
+.clanes-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem; }
+.clan-card {
+  background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;
+  position:relative;overflow:hidden;transition:all 0.35s;display:block;color:inherit;text-decoration:none;
+}
+.clan-card:hover { transform:translateY(-8px);border-color:var(--gold);box-shadow:0 20px 50px rgba(255,215,0,0.2); }
+.clan-rank-badge { position:absolute;top:1rem;right:1rem;padding:0.3rem 0.9rem;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1px; }
+.badge-1 { background:linear-gradient(135deg,#FFD700,#FFA500);color:#000; }
+.badge-2 { background:linear-gradient(135deg,#C0C0C0,#808080);color:#000; }
+.badge-3 { background:linear-gradient(135deg,#CD7F32,#8B4513);color:#fff; }
+.badge-other { background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid var(--border); }
+.clan-header-row { display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border); }
+.clan-logo    { width:70px;height:70px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;box-shadow:0 4px 15px rgba(255,215,0,0.3);flex-shrink:0; }
+.clan-logo-ph { width:70px;height:70px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.3rem;color:var(--gold);background:#1a1a00;flex-shrink:0; }
+.clan-info h3  { font-family:'Bebas Neue',cursive;font-size:1.4rem;color:#fff;letter-spacing:2px;margin-bottom:0.1rem; }
+.clan-info .tag{ color:var(--accent);font-size:0.9rem;font-weight:600; }
+.medals-row    { display:flex;justify-content:space-around;margin-bottom:1.2rem;padding:0.8rem;background:rgba(255,215,0,0.04);border-radius:10px; }
+.medal-item    { display:flex;flex-direction:column;align-items:center;gap:0.2rem; }
+.medal-icon    { font-size:1.8rem; }
+.medal-count   { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700; }
+.medal-lbl     { font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px; }
+.m-oro   .medal-count { color:var(--gold); }
+.m-plata .medal-count { color:var(--silver); }
+.m-bronce.medal-count { color:var(--bronze); }
+.clan-footer-row { display:flex;justify-content:space-between;align-items:center; }
+.ver-mas { font-size:0.85rem;color:var(--gold);font-weight:700;letter-spacing:1px;text-transform:uppercase; }
+
+.cta-section { position:relative;z-index:1;text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(255,165,0,0.04));border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.cta-section h2 { font-family:'Bebas Neue',cursive;font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);letter-spacing:3px;margin-bottom:1rem; }
+.cta-section p  { color:var(--text);max-width:600px;margin:0 auto 2rem;font-size:1.05rem;line-height:1.6; }
+
+/* ═══════════════════════════════════════
+   DESCARGA CoD MOBILE
+═══════════════════════════════════════ */
+.descarga-section { position:relative;z-index:1;padding:3.5rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(0,0,0,0.6),rgba(20,20,40,0.9));border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.descarga-inner   { max-width:700px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.8rem; }
+.descarga-texto h2 { font-family:'Bebas Neue',cursive;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--gold);letter-spacing:3px;margin:0 0 0.3rem; }
+.descarga-texto p  { color:rgba(255,255,255,0.65);font-size:0.95rem;margin:0; }
+.descarga-botones  { display:flex;gap:1rem;flex-wrap:wrap;justify-content:center; }
+.descarga-btn      { display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.6rem;border-radius:14px;text-decoration:none;transition:all 0.25s;min-width:175px; }
+.descarga-btn-icon { font-size:1.8rem;line-height:1; }
+.descarga-btn-text { display:flex;flex-direction:column;line-height:1.3;text-align:left; }
+.descarga-btn-text small { font-size:0.63rem;opacity:0.7;text-transform:uppercase;letter-spacing:1px; }
+.descarga-btn-text { font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700; }
+.descarga-apple  { background:#111;border:1.5px solid rgba(255,255,255,0.25);color:#fff; }
+.descarga-apple:hover  { background:#222;border-color:#fff;box-shadow:0 4px 22px rgba(255,255,255,0.15);transform:translateY(-2px); }
+.descarga-google { background:#1a1a2e;border:1.5px solid rgba(78,205,77,0.4);color:#fff; }
+.descarga-google:hover { background:#1e2e1e;border-color:#4ecd4d;box-shadow:0 4px 22px rgba(78,205,77,0.22);transform:translateY(-2px); }
+
+/* ═══════════════════════════════════════
+   STREAMERS TIKTOK
+═══════════════════════════════════════ */
+.streamers-section  { position:relative;z-index:1;padding:4rem 2rem;text-align:center; }
+.streamers-section h2 { font-family:'Bebas Neue',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--gold);letter-spacing:3px;margin-bottom:0.3rem; }
+.streamers-section .section-subtitle { margin-bottom:2.5rem; }
+.streamers-grid { display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;max-width:1200px;margin:0 auto; }
+
+.streamer-card { background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem 1.4rem;width:220px;display:flex;flex-direction:column;align-items:center;gap:0.8rem;transition:all 0.3s;position:relative;overflow:hidden;text-decoration:none;color:inherit; }
+.streamer-card::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,0,80,0.04),transparent);opacity:0;transition:opacity 0.3s; }
+.streamer-card:hover { transform:translateY(-6px);border-color:rgba(255,0,80,0.4);box-shadow:0 12px 35px rgba(255,0,80,0.15); }
+.streamer-card:hover::before { opacity:1; }
+
+.streamer-avatar { width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--card2); }
+.streamer-avatar-placeholder { width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#ff004c,#9b00ff);display:flex;align-items:center;justify-content:center;font-size:2rem;border:2px solid var(--border); }
+
+.streamer-nombre { font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:2px;color:var(--text); }
+.streamer-handle { font-size:0.8rem;color:var(--accent);font-weight:600; }
+
+.streamer-live-badge { display:inline-flex;align-items:center;gap:0.35rem;background:#ff0044;color:#fff;font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:2px;padding:0.25rem 0.65rem;border-radius:20px;box-shadow:0 0 12px rgba(255,0,68,0.6); }
+.streamer-live-dot { width:7px;height:7px;border-radius:50%;background:#fff;animation:livePulse 1s infinite; }
+@keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+.streamer-offline { font-size:0.72rem;color:var(--muted);letter-spacing:1px; }
+.streamer-ver-btn { margin-top:0.3rem;padding:0.4rem 1.1rem;background:transparent;border:1.5px solid rgba(255,0,80,0.5);border-radius:20px;color:#ff4d6d;font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block; }
+.streamer-ver-btn:hover { background:rgba(255,0,80,0.15);border-color:#ff0044; }
+
+.social-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem; }
+.social-card { background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem 1.5rem;text-align:center;text-decoration:none;color:#fff;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;gap:0.8rem; }
+.social-card:hover { border-color:var(--gold);background:rgba(255,215,0,0.05);transform:translateY(-6px);box-shadow:0 15px 40px rgba(255,215,0,0.2); }
+.social-icon   { font-size:2.5rem; }
+.social-name   { font-family:'Bebas Neue',cursive;font-size:1.3rem;color:var(--gold);letter-spacing:2px; }
+.social-handle { font-size:0.85rem;color:var(--muted); }
+
+/* ══════════════════════════════════════════════
+   CLANES.HTML
+   ══════════════════════════════════════════════ */
+.clanes-lista { display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:2rem; }
+
+.clan-card-full {
+  background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem;
+  transition:all 0.35s;display:flex;flex-direction:column;gap:1.5rem;animation:fadeUp 0.5s ease both;
+}
+.clan-card-full:hover { transform:translateY(-8px);border-color:var(--gold);box-shadow:0 20px 50px rgba(255,215,0,0.18); }
+
+.card-header { display:flex;align-items:center;gap:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);position:relative; }
+.rank-num { font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:900;color:var(--gold);min-width:45px;text-align:center;text-shadow:0 0 15px rgba(255,215,0,0.5); }
+.rank-1 { color:#FFD700; } .rank-2 { color:#C0C0C0; } .rank-3 { color:#CD7F32; }
+
+.clan-avatar    { width:75px;height:75px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;box-shadow:0 4px 15px rgba(255,215,0,0.3); }
+.clan-avatar-ph { width:75px;height:75px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.5rem;color:var(--gold);background:#1a1a00; }
+
+.card-info { flex:1; }
+.card-nombre { font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:2px;color:#fff;margin-bottom:0.1rem; }
+.card-tag    { color:var(--accent);font-size:1rem;font-weight:700; }
+
+.posicion-badge { display:inline-flex;align-items:center;padding:0.25rem 0.8rem;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:700;position:absolute;top:-0.4rem;right:0; }
+.pos-1 { background:linear-gradient(135deg,#FFD700,#FFA500);color:#000; }
+.pos-2 { background:linear-gradient(135deg,#C0C0C0,#808080);color:#000; }
+.pos-3 { background:linear-gradient(135deg,#CD7F32,#8B4513);color:#fff; }
+.pos-other { background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid var(--border); }
+
+.medals-row-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem; }
+.medal-box { display:flex;flex-direction:column;align-items:center;gap:0.3rem;padding:0.8rem 0.5rem;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06); }
+.medal-box .ico { font-size:1.8rem; }
+.medal-box .val { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700; }
+.medal-box .lbl { font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px; }
+.medal-oro   .val { color:var(--gold); }
+.medal-plata .val { color:var(--silver); }
+.medal-bronce.val { color:var(--bronze); }
+
+.salas-section h4 { font-family:'Bebas Neue',cursive;font-size:1.1rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.8rem; }
+.salas-lista { display:flex;flex-direction:column;gap:0.5rem; }
+.sala-row { display:flex;justify-content:space-between;align-items:center;padding:0.6rem 1rem;background:rgba(255,215,0,0.05);border:1px solid var(--border);border-radius:8px;transition:all 0.2s; }
+.sala-row:hover { background:rgba(255,215,0,0.1);border-color:var(--gold); }
+.sala-row.inactive { opacity:0.3; }
+.sala-name { font-size:0.9rem;font-weight:600;color:var(--text); }
+.sala-pts  { font-family:'Orbitron',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold); }
+
+.clan-total { display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.08));border:2px solid var(--gold);border-radius:10px; }
+.clan-total span   { font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px; }
+.clan-total strong { font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--gold); }
+
+/* ══════════════════════════════════════════════
+   RANKING.HTML
+   ══════════════════════════════════════════════ */
+.podium-wrapper  { position:relative;z-index:1;max-width:700px;margin:1.5rem auto;padding:0 2rem; }
+.podium-title    { text-align:center;font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:3px;color:var(--accent);margin-bottom:1.5rem; }
+.podium-container{ display:flex;justify-content:center;align-items:flex-end;gap:1rem; }
+.podium-item     { flex:1;max-width:200px;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1rem 1rem;border-radius:16px;transition:transform 0.3s;text-align:center; }
+.podium-item:hover { transform:translateY(-6px); }
+.pod-1 { background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,215,0,0.06));border:2px solid #FFD700;order:2;padding-bottom:2.5rem;box-shadow:0 10px 40px rgba(255,215,0,0.25); }
+.pod-2 { background:linear-gradient(135deg,rgba(192,192,192,0.2),rgba(192,192,192,0.06));border:2px solid #C0C0C0;order:3; }
+.pod-3 { background:linear-gradient(135deg,rgba(205,127,50,0.2),rgba(205,127,50,0.06));border:2px solid #CD7F32;order:1; }
+.pod-avatar    { width:75px;height:75px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;margin-bottom:0.8rem;box-shadow:0 4px 20px rgba(255,215,0,0.3); }
+.pod-avatar-ph { width:75px;height:75px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.3rem;color:var(--gold);background:#1a1a00;margin-bottom:0.8rem; }
+.pod-crown  { font-size:1.8rem;margin-bottom:0.3rem; }
+.pod-medal  { font-size:2.5rem;font-weight:900;margin-bottom:0.4rem; }
+.pod-1 .pod-medal { color:#FFD700;text-shadow:0 0 20px rgba(255,215,0,0.6); }
+.pod-2 .pod-medal { color:#C0C0C0; }
+.pod-3 .pod-medal { color:#CD7F32; }
+.pod-nombre { font-family:'Bebas Neue',cursive;font-size:1.05rem;letter-spacing:1px;color:#fff;margin-bottom:0.2rem; }
+.pod-tag    { color:var(--accent);font-size:0.85rem;font-weight:600; }
+.pod-pts    { font-family:'Orbitron',sans-serif;font-size:0.85rem;color:var(--gold);margin-top:0.5rem; }
+
+.filtros { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap; }
+.filtro-btn { padding:0.7rem 1.4rem;background:rgba(255,215,0,0.08);border:1.5px solid var(--border);border-radius:30px;color:var(--text);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.3s;text-transform:uppercase;letter-spacing:1px; }
+.filtro-btn:hover  { background:rgba(255,215,0,0.15);border-color:var(--gold);color:var(--gold); }
+.filtro-btn.active { background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border-color:transparent;box-shadow:0 4px 20px rgba(255,215,0,0.4); }
+
+.ranking-wrapper { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem 4rem; }
+.ranking-item { display:grid;grid-template-columns:70px 75px 1fr auto;align-items:center;gap:1.2rem;padding:1.2rem 1.8rem;background:linear-gradient(135deg,rgba(255,215,0,0.04) 0%,rgba(255,215,0,0.08) 100%);border:1px solid var(--border);border-radius:14px;margin-bottom:0.8rem;transition:all 0.3s;animation:fadeIn 0.4s ease both; }
+.ranking-item:hover { transform:translateX(8px);box-shadow:0 8px 30px rgba(255,215,0,0.2);border-color:var(--gold); }
+.ranking-item.top-1 { background:linear-gradient(135deg,rgba(255,215,0,0.2) 0%,rgba(255,215,0,0.08) 100%);border-color:#FFD700;box-shadow:0 5px 25px rgba(255,215,0,0.3); }
+.ranking-item.top-2 { background:linear-gradient(135deg,rgba(192,192,192,0.15) 0%,rgba(192,192,192,0.06) 100%);border-color:#C0C0C0; }
+.ranking-item.top-3 { background:linear-gradient(135deg,rgba(205,127,50,0.15) 0%,rgba(205,127,50,0.06) 100%);border-color:#CD7F32; }
+.rank-pos  { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);text-align:center; }
+.top-1 .rank-pos { font-size:2.5rem;color:#FFD700;text-shadow:0 0 15px rgba(255,215,0,0.7); }
+.top-2 .rank-pos { color:#C0C0C0; } .top-3 .rank-pos { color:#CD7F32; }
+.rank-logo    { width:65px;height:65px;border-radius:50%;border:2.5px solid var(--gold);object-fit:cover;box-shadow:0 3px 10px rgba(255,215,0,0.3); }
+.rank-logo-ph { width:65px;height:65px;border-radius:50%;border:2.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.2rem;color:var(--gold);background:#1a1a00; }
+.rank-nombre     { font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;color:#fff;margin-bottom:0.1rem; }
+.rank-tag        { color:var(--accent);font-size:0.95rem;font-weight:600; }
+.rank-sala-label { font-size:0.8rem;color:var(--muted);margin-top:0.2rem; }
+.rank-medals     { display:flex;gap:0.6rem;margin-top:0.3rem; }
+.rank-medal      { display:flex;align-items:center;gap:0.2rem;font-size:0.85rem;font-weight:700; }
+.rm-o { color:var(--gold); } .rm-p { color:var(--silver); } .rm-b { color:var(--bronze); }
+.rank-right      { display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem; }
+.rank-score      { font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold); }
+.rank-score-lbl  { font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px; }
+
+/* ══════════════════════════════════════════════
+   ADMIN.HTML — LOGIN
+   ══════════════════════════════════════════════ */
+.login-container {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.97);
+  z-index: 9999; display: flex; align-items: center; justify-content: center;
+  padding: 2rem; overflow-y: auto;
+}
+.login-logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; margin-bottom: 1.2rem; box-shadow: 0 0 30px rgba(255,215,0,0.4); }
+.login-form   { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+.input-group  { display: flex; flex-direction: column; gap: 0.35rem; text-align: left; }
+.input-group label { font-size: 0.85rem; font-weight: 600; color: var(--muted); letter-spacing: 1px; }
+.input-group input { background: #000; border: 1.5px solid var(--border); border-radius: 10px; padding: 0.8rem 1rem; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+.input-group input:focus { border-color: var(--gold); }
+.input-group input::placeholder { color: var(--muted); }
+
+.login-roles  { background: rgba(255,215,0,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin-bottom: 1.2rem; }
+.roles-title  { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.8rem; }
+.roles-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.role-item    { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.7rem; border-radius: 8px; border: 1px solid var(--border); }
+.role-item span   { font-size: 1.2rem; }
+.role-item strong { font-size: 0.85rem; color: #fff; }
+.role-item small  { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+.role-viewer { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+.role-master { border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); }
+
+.login-footer { margin-top: 0.5rem; }
+.login-footer a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.3s; }
+.login-footer a:hover { color: var(--gold); }
+
+/* ══════════════════════════════════════════════
+   ADMIN.HTML — DASHBOARD
+   ══════════════════════════════════════════════ */
+.admin-container { min-height: 100vh; }
+
+nav.admin-nav { border-bottom-color: var(--danger); }
+.nav-center  { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+.nav-title   { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 3px; color: var(--danger); }
+.rol-badge   { padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; border: 1px solid var(--border); color: var(--muted); }
+.rol-badge.rol-viewer { background: rgba(34,197,94,0.12); border-color: var(--success); color: var(--success); }
+.rol-badge.rol-master { background: rgba(255,215,0,0.12); border-color: var(--gold);    color: var(--gold); }
+.btn-logout  { background: rgba(255,77,77,0.1); border: 1.5px solid var(--danger); color: var(--danger); padding: 0.45rem 1.1rem; border-radius: 20px; font-family: 'Rajdhani', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+.btn-logout:hover { background: var(--danger); color: #fff; }
+
+/* ADMIN — stats (estructura con stat-icon + stat-info) */
+.stats-grid  { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 1rem; max-width: 1400px; margin: 1.5rem auto; padding: 0 2rem; }
+.stats-grid .stat-card { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.4rem; }
+.stat-icon   { font-size: 2rem; flex-shrink: 0; }
+.stat-info   { display: flex; flex-direction: column; gap: 0.1rem; }
+.stat-value  { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--gold); }
+
+/* ADMIN — filtros */
+.admin-filters { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; max-width: 1400px; margin: 0 auto 1rem; padding: 0 2rem; }
+.search-input  { flex: 1; min-width: 220px; padding: 0.7rem 1rem; background: var(--card2); border: 1.5px solid var(--border); border-radius: 30px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: var(--muted); }
+.filter-select { padding: 0.65rem 1rem; background: var(--card2); border: 1.5px solid var(--border); border-radius: 20px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; outline: none; cursor: pointer; transition: border-color 0.3s; }
+.filter-select:focus { border-color: var(--gold); }
+.btn-refresh { padding: 0.65rem 1.3rem; background: rgba(255,215,0,0.08); border: 1.5px solid var(--border); border-radius: 20px; color: var(--gold); font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.btn-refresh:hover { background: rgba(255,215,0,0.18); border-color: var(--gold); }
+
+/* ADMIN — tabla */
+.table-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem 2rem; }
+.table-container h2 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.8rem; }
+.table-container h2::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+.table-subtitle { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+.admin-table    { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.loading-cell   { text-align: center; padding: 2.5rem; color: var(--muted); letter-spacing: 1px; }
+
+/* ADMIN — celda logo */
+.logo-cell       { display: flex; align-items: center; gap: 0.5rem; }
+.clan-logo-small { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; flex-shrink: 0; }
+
+/* ADMIN — medallas y estados */
+.medals-display { display: flex; gap: 0.5rem; font-size: 0.85rem; font-weight: 700; white-space: nowrap; }
+.status-badge   { display: inline-flex; align-items: center; padding: 0.2rem 0.65rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+.status-active  { background: rgba(34,197,94,0.15); border: 1px solid var(--success); color: var(--success); }
+.status-inactive{ background: rgba(255,165,0,0.12); border: 1px solid rgba(255,165,0,0.4); color: rgba(255,165,0,0.9); }
+
+/* ADMIN — exportar */
+.export-section { max-width: 1400px; margin: 0 auto 3rem; padding: 0 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.export-section h3 { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; letter-spacing: 2px; color: var(--gold); width: 100%; margin-bottom: 0.2rem; }
+.btn-export { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; background: rgba(255,215,0,0.08); border: 1.5px solid var(--border); border-radius: 20px; color: var(--gold); font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-export:hover { background: var(--gold); color: #000; border-color: transparent; box-shadow: 0 5px 20px rgba(255,215,0,0.35); }
+.btn-limpiar-medallas { background:rgba(255,77,77,0.08)!important;border-color:rgba(255,77,77,0.35)!important;color:#ff6b6b!important; }
+.btn-limpiar-medallas:hover { background:#ff4d4d!important;color:#fff!important;border-color:transparent!important; }
+
+/* ══════════════════════════════════════════════════════════════
+   MEDALLAS ESPECIALES — Sección de gestión en el panel Admin
+   ══════════════════════════════════════════════════════════════ */
+
+/* Contenedor principal de la sección */
+.medallas-especiales-section { max-width:1400px;margin:0 auto 3rem;padding:2rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:20px; }
+.medallas-especiales-section h3 { font-family:'Bebas Neue',cursive;font-size:1.6rem;color:var(--gold);letter-spacing:3px;margin-bottom:0.4rem; }
+.medallas-desc { color:var(--muted);font-size:0.88rem;margin-bottom:1rem; }
+
+/* Leyenda — muestra los 3 tipos con sus colores */
+.medallas-leyenda { display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem 1rem;margin-bottom:1.2rem;padding:0.8rem 1rem;background:rgba(0,0,0,0.3);border-radius:10px; }
+.medallas-leyenda small { color:var(--muted);font-size:0.78rem; }
+
+/* Grid de tarjetas de clanes */
+.medallas-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;margin-top:1rem; }
+
+/* Tarjeta individual de clan en la sección de medallas */
+.medalla-clan-card { display:flex;align-items:center;gap:0.9rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0.9rem 1rem;transition:all 0.3s; }
+/* Cuando el clan tiene al menos 1 medalla activa, la tarjeta brilla */
+.medalla-clan-card.tiene-medallas { border-color:rgba(255,215,0,0.4);box-shadow:0 0 14px rgba(255,215,0,0.1); }
+.medalla-logo { width:46px;height:46px;border-radius:50%;border:2px solid var(--border);object-fit:cover;flex-shrink:0; }
+.medalla-clan-info { display:flex;flex-direction:column;min-width:0;flex:1; }
+.medalla-clan-nombre { font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:1.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.medalla-clan-tag { font-size:0.75rem;color:var(--accent);font-weight:600; }
+
+/* Botones de medalla dentro de cada tarjeta */
+.medalla-botones { display:flex;flex-direction:column;gap:0.4rem;flex-shrink:0; }
+.btn-medalla { padding:0.3rem 0.65rem;border:1.5px solid var(--border);border-radius:20px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.35);font-size:0.72rem;font-weight:700;cursor:pointer;transition:all 0.25s;font-family:'Rajdhani',sans-serif;letter-spacing:0.5px;white-space:nowrap;-webkit-appearance:none;appearance:none; }
+.btn-medalla:hover { background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);transform:scale(1.04); }
+/* Estado activo: el JS aplica inline styles de color; esta clase añade transición */
+.btn-medalla.activa { font-weight:900;transform:scale(1.05); }
+
+/* Badges de medalla — aparecen en la tabla y en tarjetas de clanes */
+.badge-medalla { display:inline-flex;align-items:center;padding:0.2rem 0.55rem;border-radius:20px;font-size:0.7rem;font-weight:800;letter-spacing:0.5px;white-space:nowrap;border:1.5px solid; }
+/* 💎 Rubí */
+.badge-medalla.rubi        { color:#E0115F;background:rgba(224,17,95,0.15);border-color:#E0115F;text-shadow:0 0 8px rgba(224,17,95,0.5); }
+/* 💎 Oro+Diamante */
+.badge-medalla.oro-diamante { color:#B9F2FF;background:rgba(185,242,255,0.12);border-color:#B9F2FF;text-shadow:0 0 8px rgba(185,242,255,0.4); }
+/* 💚 Esmeralda */
+.badge-medalla.esmeralda   { color:#50C878;background:rgba(80,200,120,0.15);border-color:#50C878;text-shadow:0 0 8px rgba(80,200,120,0.4); }
+
+/* Celda de medallas en la tabla */
+.medallas-td { text-align:center;vertical-align:middle;white-space:nowrap; }
+.medallas-td .badge-medalla { display:inline-flex;margin:1px 2px; }
+
+/* Contenedores de badges en páginas públicas */
+/* clanes.html — dentro de .clan-info */
+.clan-badges-especiales { display:flex;flex-wrap:wrap;gap:4px;margin-top:0.4rem; }
+/* ranking.html — debajo del nombre de sala */
+.ranking-badges-especiales { display:flex;flex-wrap:wrap;gap:4px;margin-top:0.35rem; }
+/* index.html — entre nombre/tag y stats */
+.index-badges-especiales { display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin:0.2rem 0; }
+
+#loginGate { position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:2rem; }
+.login-box { background:#111;border:2px solid var(--danger);border-radius:20px;padding:2.5rem;max-width:400px;width:100%;text-align:center; }
+.login-box h2 { font-family:'Bebas Neue',cursive;font-size:2rem;color:var(--danger);letter-spacing:3px;margin-bottom:0.5rem; }
+.login-box p  { color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem; }
+.login-box input { width:100%;background:#000;border:1.5px solid var(--border);border-radius:10px;padding:0.8rem 1rem;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;transition:border-color 0.3s;margin-bottom:1rem;text-align:center;letter-spacing:3px; }
+.login-box input:focus { border-color:var(--gold); }
+.login-box input::placeholder { letter-spacing:1px;color:var(--muted); }
+.btn-login { width:100%;padding:0.8rem;background:linear-gradient(135deg,var(--danger),#cc0000);border:none;border-radius:10px;color:#fff;font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;cursor:pointer;transition:all 0.3s; }
+.btn-login:hover { opacity:0.85;transform:translateY(-2px); }
+.login-error { color:var(--danger);font-size:0.85rem;margin-top:0.8rem;display:none; }
+
+.hero.admin-hero h1 { color: var(--danger); }
+.admin-badge { display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,77,77,0.12);border:1px solid var(--danger);color:var(--danger);padding:0.3rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem; }
+
+.sheet-banner { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1.2rem 1.8rem;background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.05));border:1.5px solid var(--success);border-radius:12px;margin-bottom:1.5rem; }
+.sheet-info { display:flex;align-items:center;gap:0.8rem; }
+.sheet-icon { font-size:1.8rem; }
+.sheet-text h4 { font-size:1rem;font-weight:700;color:var(--success);margin-bottom:0.1rem; }
+.sheet-text p  { font-size:0.82rem;color:var(--muted); }
+.btn-sheet { display:inline-flex;align-items:center;gap:0.5rem;background:var(--success);color:#000;padding:0.6rem 1.4rem;border-radius:25px;font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s;white-space:nowrap; }
+.btn-sheet:hover { background:#16a34a;transform:translateY(-2px);box-shadow:0 8px 25px rgba(34,197,94,0.4); }
+
+.readonly-notice { display:flex;align-items:center;gap:0.6rem;background:rgba(255,165,0,0.08);border:1px solid rgba(255,165,0,0.3);border-radius:8px;padding:0.7rem 1rem;margin-bottom:1.5rem;font-size:0.85rem;color:rgba(255,165,0,0.9); }
+
+.stats-row { display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem; }
+.stat-card { background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;transition:all 0.3s; }
+.stat-card:hover { border-color:var(--gold); }
+.stat-card .num { font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:900;color:var(--gold); }
+.stat-card .lbl { font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:0.3rem; }
+
+.section-title { font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:3px;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem; }
+.section-title::after { content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent); }
+
+.search-bar { position:relative;margin-bottom:1.2rem;max-width:400px; }
+.search-bar input { width:100%;padding:0.7rem 1rem 0.7rem 2.5rem;background:var(--card2);border:1.5px solid var(--border);border-radius:30px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.3s; }
+.search-bar input:focus { border-color:var(--gold); }
+.search-bar input::placeholder { color:var(--muted); }
+.search-icon { position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);font-size:0.9rem;color:var(--muted); }
+
+.table-wrapper { overflow-x:auto;border-radius:14px;border:1px solid var(--border);margin-bottom:2.5rem; }
+table { width:100%;border-collapse:collapse;font-size:0.9rem; }
+thead { background:rgba(255,215,0,0.08); }
+thead th { padding:0.9rem 1rem;text-align:left;font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:2px;color:var(--gold);border-bottom:1px solid var(--border);white-space:nowrap; }
+tbody tr { border-bottom:1px solid rgba(255,215,0,0.08);transition:background 0.2s; }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:hover { background:rgba(255,215,0,0.04); }
+tbody td { padding:0.85rem 1rem;color:var(--text);vertical-align:middle; }
+
+.td-clan { display:flex;align-items:center;gap:0.8rem; }
+.td-avatar    { width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;flex-shrink:0; }
+.td-avatar-ph { width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:0.9rem;color:var(--gold);background:#1a1a00;flex-shrink:0; }
+.td-nombre { font-weight:700;color:#fff;font-size:0.95rem; }
+.td-tag    { color:var(--accent);font-size:0.8rem; }
+
+.copy-btn { display:inline-flex;align-items:center;gap:0.35rem;background:rgba(255,215,0,0.07);border:1px solid var(--border);border-radius:18px;padding:0.25rem 0.7rem;font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text);cursor:pointer;transition:all 0.25s;white-space:nowrap; }
+.copy-btn:hover  { background:rgba(255,215,0,0.18);border-color:var(--gold);color:var(--gold); }
+.copy-btn.copied { background:rgba(34,197,94,0.18);border-color:var(--success);color:var(--success); }
+.copy-btn .icon  { font-size:0.85rem; }
+
+.btn-dl { display:inline-flex;align-items:center;gap:0.35rem;background:rgba(255,215,0,0.08);color:var(--gold);border:1px solid var(--border);border-radius:18px;padding:0.3rem 0.8rem;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.25s;text-transform:uppercase;letter-spacing:0.5px;text-decoration:none;font-family:inherit;-webkit-appearance:none;appearance:none;outline:none; }
+.btn-dl:hover { background:var(--gold);color:#000; }
+.btn-dl.no-logo { color:var(--muted);border-color:rgba(255,255,255,0.08);cursor:default; }
+.btn-dl.no-logo:hover { background:transparent;color:var(--muted); }
+
+/* ══════════════════════════════════════════════
+   ADMIN — PANEL CONTACTOS (solo CEO)
+   ══════════════════════════════════════════════ */
+.contactos-section { max-width:1400px;margin:0 auto;padding:1.5rem 2rem 3rem; }
+.contactos-header  { display:flex;align-items:center;flex-wrap:wrap;gap:1rem;justify-content:space-between;margin-bottom:0.5rem; }
+.contactos-header h3 { font-family:'Bebas Neue',cursive;font-size:1.6rem;color:var(--gold);letter-spacing:3px;margin:0; }
+.contactos-desc { font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem; }
+.contactos-aviso { text-align:center;padding:3rem;color:var(--muted);font-size:0.95rem; }
+.contactos-aviso code { background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px;color:var(--accent); }
+
+/* Grid de tarjetas */
+.contactos-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;margin-top:0.5rem; }
+
+/* Tarjeta individual */
+.cto-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    transition:border-color 0.25s, box-shadow 0.25s;
+}
+.cto-card:hover { border-color:rgba(255,215,0,0.4);box-shadow:0 6px 28px rgba(255,215,0,0.1); }
+
+/* Cabecera: logo + nombre + modo */
+.cto-card-top { display:flex;align-items:center;gap:0.9rem;padding:1rem 1.2rem; }
+.cto-logo { width:52px;height:52px;border-radius:50%;border:2.5px solid var(--gold);object-fit:cover;flex-shrink:0; }
+.cto-clan-info { display:flex;flex-direction:column;gap:0.15rem;min-width:0; }
+.cto-nombre { font-family:'Bebas Neue',cursive;font-size:1.05rem;letter-spacing:2px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.cto-tag  { font-size:0.78rem;color:var(--accent);font-weight:700; }
+.cto-modo { display:inline-block;margin-top:0.1rem;padding:0.15rem 0.55rem;background:rgba(230,247,2,0.1);border:1px solid rgba(230,247,2,0.3);border-radius:20px;font-size:0.68rem;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase; }
+
+.cto-divider { height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 1.2rem; }
+
+/* Bloque de contactos */
+.cto-contactos { display:flex;flex-direction:column;gap:0;padding:0.6rem 1.2rem 1rem; }
+.cto-persona   { padding:0.55rem 0;border-bottom:1px dashed rgba(255,255,255,0.06); }
+.cto-persona:last-child { border-bottom:none; }
+.cto-rol { display:block;font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;opacity:0.8; }
+.cto-field { display:flex;align-items:center;gap:0.5rem;margin-bottom:0.15rem; }
+.cto-lbl   { font-size:0.72rem;color:var(--muted);min-width:52px;flex-shrink:0; }
+.cto-val   { font-size:0.85rem;color:var(--text);font-weight:600; }
+.cto-empty { color:rgba(255,255,255,0.2);font-size:0.82rem; }
+.cto-tel   { font-size:0.85rem;font-weight:700;color:#4ade80;text-decoration:none;transition:color 0.2s; }
+.cto-tel:hover { color:#22c55e;text-decoration:underline; }
+
+.medals-cell { display:flex;gap:0.5rem; }
+.mc   { font-size:0.85rem;font-weight:700; }
+.mc-o { color:var(--gold); } .mc-p { color:var(--silver); } .mc-b { color:var(--bronze); }
+.pts-cell  { font-family:'Orbitron',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gold); }
+.sala-pts  { font-family:'Orbitron',sans-serif;font-size:0.85rem; }
+.sala-pts.cero { color:rgba(255,255,255,0.2); }
+
+.pos-badge { display:inline-flex;align-items:center;padding:0.2rem 0.7rem;border-radius:12px;font-weight:700;font-size:0.78rem; }
+
+/* ══════════════════════════════════════════════
+   FOOTER — nuevo layout (footer-content / footer-section)
+   ══════════════════════════════════════════════ */
+.footer-content { max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2.5rem;margin-bottom:2rem; }
+.footer-section h3 { font-family:'Bebas Neue',cursive;font-size:1.2rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem; }
+.footer-section p  { color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.6; }
+.footer-links { list-style:none; }
+.footer-links li  { margin-bottom:0.5rem; }
+.footer-links a   { color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.9rem;transition:color 0.3s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-social { display:flex;flex-direction:column;gap:0.5rem; }
+.footer-social a { color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.9rem;transition:color 0.3s; }
+.footer-social a:hover { color:var(--gold); }
+
+/* ══════════════════════════════════════════════
+   NAVBAR — CTA button + hamburger .active
+   ══════════════════════════════════════════════ */
+.cta-button { background:linear-gradient(135deg,var(--gold),var(--gold2)) !important;color:#000 !important;border-radius:20px !important;font-weight:700 !important; }
+.cta-button:hover { opacity:0.85;box-shadow:0 4px 15px rgba(255,215,0,0.4); }
+/* initHamburger usa .active (no .open) */
+.nav-links.active { transform:translateY(0) !important;opacity:1 !important;pointer-events:all !important; }
+.hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity:0; }
+.hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+/* ══════════════════════════════════════════════
+   INDEX.HTML — hero-section
+   ══════════════════════════════════════════════ */
+.hero-section { position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;padding:4rem 2rem 3rem;text-align:center; }
+.hero-logo { width:160px;height:160px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;box-shadow:0 0 60px rgba(255,215,0,0.5);animation:logoPulse 3s ease-in-out infinite; }
+.hero-content { display:flex;flex-direction:column;gap:0.8rem; }
+.hero-description { font-size:1.05rem;color:var(--text);max-width:600px;margin:0 auto;line-height:1.7; }
+
+/* INDEX — stats */
+.stats-section  { position:relative;z-index:1;padding:2rem;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.05),transparent);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.stats-container{ max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem; }
+.stat-number { font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:900;color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,0.5); }
+.stat-label  { font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:0.2rem; }
+
+/* INDEX — clanes destacados */
+.clanes-destacados-section { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:3rem 2rem;text-align:center; }
+.clanes-destacados-section h2 { font-family:'Bebas Neue',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--gold);letter-spacing:3px;margin-bottom:0.3rem; }
+.section-subtitle { color:var(--muted);font-size:1rem;letter-spacing:1px;margin-bottom:2rem;display:block; }
+.clanes-destacados-grid { margin-bottom:2rem; }
+.mensaje-cargando { color:var(--muted);padding:3rem;text-align:center;letter-spacing:1px; }
+.clanes-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem; }
+
+/* INDEX — clan-card-mini */
+.clan-card-mini { background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;position:relative;display:flex;flex-direction:column;align-items:center;gap:0.8rem;transition:all 0.35s;text-align:center; }
+.clan-card-mini:hover { transform:translateY(-6px);border-color:var(--gold);box-shadow:0 20px 50px rgba(255,215,0,0.2); }
+.clan-card-mini .clan-rank-badge { position:absolute;top:0.8rem;right:0.8rem;padding:0.25rem 0.7rem;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1px;background:rgba(255,215,0,0.1);color:var(--gold);border:1px solid var(--border); }
+.clan-card-mini .clan-rank-badge.gold   { background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;border:none; }
+.clan-card-mini .clan-rank-badge.silver { background:linear-gradient(135deg,#C0C0C0,#808080);color:#000;border:none; }
+.clan-card-mini .clan-rank-badge.bronze { background:linear-gradient(135deg,#CD7F32,#8B4513);color:#fff;border:none; }
+.clan-logo-mini { width:70px;height:70px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;box-shadow:0 4px 15px rgba(255,215,0,0.3); }
+.clan-name-mini { font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;color:#fff; }
+.clan-tag-mini  { color:var(--accent);font-size:0.9rem;font-weight:600; }
+.clan-stats { display:grid;grid-template-columns:repeat(2,1fr);gap:0.6rem;width:100%; }
+.clan-stat  { background:rgba(255,215,0,0.04);border:1px solid var(--border);border-radius:8px;padding:0.5rem;text-align:center; }
+.clan-stat .stat-value { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700; }
+.clan-stat .stat-label { font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:0.15rem; }
+/* Líder de Oro */
+.clan-card-oro-lider { border:2px solid #FFD700!important;box-shadow:0 0 30px rgba(255,215,0,0.45),0 0 60px rgba(255,215,0,0.2); }
+.clan-card-oro-lider .clan-logo-mini { border-width:4px;box-shadow:0 0 20px rgba(255,215,0,0.7); }
+.corona-oro { background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:900;letter-spacing:2px;padding:0.3rem 0.9rem;border-radius:20px;text-transform:uppercase;margin-bottom:0.2rem; }
+.destacado-oro      { background:rgba(255,215,0,0.12)!important;border-color:rgba(255,215,0,0.4)!important; }
+.destacado-plata    { background:rgba(192,192,192,0.10)!important;border-color:rgba(192,192,192,0.4)!important; }
+.destacado-bronce   { background:rgba(205,127,50,0.10)!important;border-color:rgba(205,127,50,0.4)!important; }
+.destacado-medallero{ background:linear-gradient(135deg,rgba(255,215,0,0.14),rgba(192,192,192,0.08))!important;border-color:rgba(255,215,0,0.45)!important; }
+
+/* INDEX — botones y secciones */
+.botones-container { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem; }
+.btn-primary  { display:inline-flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;padding:0.9rem 2.2rem;border-radius:50px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:all 0.3s;box-shadow:0 5px 25px rgba(255,215,0,0.4); }
+.btn-primary:hover  { transform:translateY(-3px);box-shadow:0 10px 35px rgba(255,215,0,0.6); }
+.btn-secondary { display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:var(--gold);border:2px solid var(--gold);padding:0.9rem 2.2rem;border-radius:50px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:all 0.3s; }
+.btn-secondary:hover { background:var(--gold);color:#000;transform:translateY(-3px); }
+.social-section { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:3rem 2rem;text-align:center; }
+.social-section h2 { font-family:'Bebas Neue',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--gold);letter-spacing:3px;margin-bottom:0.3rem; }
+
+/* ══════════════════════════════════════════════
+   RANKING.HTML — clases generadas por ranking.js
+   ══════════════════════════════════════════════ */
+.filtros-container { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap; }
+.ranking-container { position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem 4rem; }
+.loading-message { text-align:center;color:var(--muted);padding:3rem;letter-spacing:1px; }
+.error-message   { text-align:center;color:var(--danger);padding:3rem;letter-spacing:1px; }
+
+.ranking-posicion { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);text-align:center;min-width:50px; }
+.top-1 .ranking-posicion { font-size:2.5rem;color:#FFD700;text-shadow:0 0 15px rgba(255,215,0,0.7); }
+.top-2 .ranking-posicion { color:#C0C0C0; }
+.top-3 .ranking-posicion { color:#CD7F32; }
+.ranking-logo { width:65px;height:65px;border-radius:50%;border:2.5px solid var(--gold);object-fit:cover;box-shadow:0 3px 10px rgba(255,215,0,0.3);flex-shrink:0; }
+.ranking-info  { flex:1; }
+.ranking-nombre{ font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:2px;color:#fff;margin-bottom:0.1rem; }
+.ranking-tag   { color:var(--accent);font-size:0.95rem;font-weight:600; }
+.ranking-sala  { font-size:0.8rem;color:var(--muted);margin-top:0.2rem; }
+.ranking-puntos{ display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem; }
+.ranking-score { font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold); }
+.ranking-label { font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px; }
+
+/* ══════════════════════════════════════════════
+   CLANES.HTML — clases generadas por clanes.js
+   ══════════════════════════════════════════════ */
+/* Buscador de clanes */
+.clanes-buscar { display:flex;flex-direction:column;align-items:center;gap:0.5rem;padding:1.2rem 2rem 0.5rem;max-width:600px;margin:0 auto; }
+.clanes-buscar .search-bar { width:100%;max-width:100%; }
+.clanes-filtros { padding:0 !important;margin:0 !important; }
+.clanes-resultado { font-family:'Orbitron',sans-serif;font-size:0.72rem;letter-spacing:1.5px;color:var(--accent);min-height:1rem; }
+
+/* Colores activos por trofeo */
+.filtro-btn.filtro-oro.active  { background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;border-color:transparent;box-shadow:0 4px 18px rgba(255,215,0,0.45); }
+.filtro-btn.filtro-plata.active { background:linear-gradient(135deg,#C0C0C0,#A8A8A8);color:#000;border-color:transparent;box-shadow:0 4px 18px rgba(192,192,192,0.4); }
+.filtro-btn.filtro-bronce.active { background:linear-gradient(135deg,#CD7F32,#A0522D);color:#fff;border-color:transparent;box-shadow:0 4px 18px rgba(205,127,50,0.4); }
+
+.clanes-container { position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:2rem; }
+.no-clanes    { color:var(--muted);padding:3rem;text-align:center;grid-column:1/-1;letter-spacing:1px; }
+.error-clanes { color:var(--danger);padding:3rem;text-align:center;grid-column:1/-1; }
+.clanes-count { font-family:'Orbitron',sans-serif;font-size:0.75rem;color:var(--accent);margin-top:0.8rem;letter-spacing:2px;display:block; }
+
+/* clan-card — override para estructura de clanes.js */
+.clan-card { background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem;transition:all 0.35s;animation:fadeUp 0.5s ease both;text-decoration:none;color:inherit; }
+.clan-card:hover { transform:translateY(-8px);border-color:var(--gold);box-shadow:0 20px 50px rgba(255,215,0,0.18); }
+.clan-header { display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border); }
+.clan-rank { font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);min-width:45px;text-align:center;text-shadow:0 0 15px rgba(255,215,0,0.5); }
+.clan-info  { flex:1; }
+.clan-nombre { font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:2px;color:#fff;margin-bottom:0.1rem; }
+.clan-tag  { color:var(--accent);font-size:0.9rem;font-weight:600; }
+.clan-id   { color:var(--muted);font-size:0.75rem;margin-top:0.1rem; }
+
+/* ═══════════════════════════════════════
+   PESTAÑAS DEL PANEL ADMIN
+═══════════════════════════════════════ */
+.admin-tabs { position:sticky;top:0;z-index:100;display:flex;gap:0;background:#0d0d1a;border-bottom:2px solid var(--border);padding:0 2rem; }
+.admin-tab  { padding:0.9rem 1.6rem;background:transparent;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.25s;margin-bottom:-2px; }
+.admin-tab:hover  { color:var(--text);background:rgba(255,215,0,0.05); }
+.admin-tab.active { color:var(--gold);border-bottom-color:var(--gold);background:rgba(255,215,0,0.07); }
+.admin-panel { animation:fadeTabIn 0.2s ease; }
+@keyframes fadeTabIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+/* Asistencia section */
+.asistencia-section { max-width:1400px;margin:2rem auto;padding:0 2rem; }
+
+/* ═══════════════════════════════════════
+   SALAS DE JUEGO
+═══════════════════════════════════════ */
+.salas-container { max-width:1300px;margin:0 auto;padding:2rem 2rem 5rem; }
+
+.rooms-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1.8rem;
+}
+
+/* Tarjeta base */
+.room-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:1.6rem 1.4rem 1.4rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.room-card::before {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(90deg,var(--gold),var(--gold2));
+    opacity:0;
+    transition:opacity 0.3s;
+}
+.room-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 16px 40px rgba(255,215,0,0.12);
+    border-color:rgba(255,215,0,0.35);
+}
+.room-card:hover::before { opacity:1; }
+
+/* Tarjeta especial (Multijugador, Torneos) */
+.room-card-especial::before { background:linear-gradient(90deg,#9b59b6,#3498db); }
+.room-card-especial:hover { box-shadow:0 16px 40px rgba(155,89,182,0.15);border-color:rgba(155,89,182,0.35); }
+
+/* Hora */
+.room-time {
+    font-family:'Orbitron',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:2px;
+    color:var(--accent);
+    text-transform:uppercase;
+}
+
+/* Nombre de sala */
+.room-name {
+    font-family:'Bebas Neue',cursive;
+    font-size:1.9rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    line-height:1;
+}
+
+/* Divisor */
+.room-divider {
+    height:1px;
+    background:linear-gradient(90deg,var(--border),transparent);
+    margin:0.1rem 0;
+}
+
+/* Host */
+.host-info {
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+}
+.player-icon {
+    font-size:1.6rem;
+    width:42px;height:42px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,215,0,0.08);
+    border:1px solid rgba(255,215,0,0.2);
+    border-radius:50%;
+}
+.host-label {
+    font-size:0.65rem;
+    letter-spacing:2px;
+    color:var(--muted);
+    text-transform:uppercase;
+}
+.host-name {
+    font-family:'Rajdhani',sans-serif;
+    font-size:1.05rem;
+    font-weight:700;
+    color:var(--text);
+}
+
+/* Streaming TikTok dentro de la sala */
+.sala-tiktok {
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.4rem 0.7rem;
+    background:rgba(255,0,80,0.07);
+    border:1px solid rgba(255,0,80,0.2);
+    border-radius:8px;
+    flex-wrap:wrap;
+}
+.sala-tiktok-label {
+    font-size:0.7rem;
+    letter-spacing:1px;
+    color:rgba(255,80,100,0.8);
+    font-weight:700;
+    text-transform:uppercase;
+}
+.sala-tiktok-link {
+    font-size:0.82rem;
+    color:#ff4d6d;
+    text-decoration:none;
+    font-weight:600;
+    transition:color 0.2s;
+}
+.sala-tiktok-link:hover { color:#fff; }
+
+/* Botón ingresar */
+.btn-ingresar {
+    margin-top:auto;
+    display:block;
+    text-align:center;
+    padding:0.65rem 1rem;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#000;
+    font-family:'Bebas Neue',cursive;
+    font-size:1rem;
+    letter-spacing:2px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:all 0.25s;
+    box-shadow:0 4px 15px rgba(255,215,0,0.2);
+}
+.btn-ingresar:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(255,215,0,0.4);
+    filter:brightness(1.1);
+}
+
+@media(max-width:600px) {
+    .rooms-grid { grid-template-columns:1fr; }
+}
+
+/* ═══════════════════════════════════════
+   DETALLE DE SALA
+═══════════════════════════════════════ */
+
+/* Hero de sala */
+.sala-hero {
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:2.5rem;
+    max-width:1100px;
+    margin:3rem auto 0;
+    padding:2rem 2rem;
+    flex-wrap:wrap;
+}
+.sala-hero-img {
+    width:140px;
+    height:140px;
+    object-fit:contain;
+    border-radius:20px;
+    border:2px solid var(--border);
+    background:rgba(255,215,0,0.05);
+    flex-shrink:0;
+}
+.sala-hero-content { flex:1;min-width:220px; }
+.sala-hero-back a {
+    font-size:0.8rem;
+    color:var(--accent);
+    text-decoration:none;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:color 0.2s;
+}
+.sala-hero-back a:hover { color:var(--gold); }
+.sala-hero-title {
+    font-family:'Bebas Neue',cursive;
+    font-size:clamp(2.5rem,7vw,4.5rem);
+    letter-spacing:4px;
+    color:var(--gold);
+    margin:0.3rem 0 0.6rem;
+    line-height:1;
+}
+.sala-hero-desc {
+    color:rgba(255,255,255,0.7);
+    font-size:0.95rem;
+    line-height:1.65;
+    max-width:600px;
+    margin-bottom:1rem;
+}
+.sala-hero-badge {
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.35rem 1rem;
+    background:rgba(255,215,0,0.1);
+    border:1px solid rgba(255,215,0,0.3);
+    border-radius:30px;
+    font-family:'Orbitron',sans-serif;
+    font-size:0.7rem;
+    letter-spacing:1.5px;
+    color:var(--gold);
+}
+
+/* Seccion features */
+.sala-features { max-width:1100px;margin:3rem auto;padding:0 2rem; }
+.sala-section-title {
+    font-family:'Bebas Neue',cursive;
+    font-size:clamp(1.6rem,4vw,2.4rem);
+    letter-spacing:4px;
+    color:var(--gold);
+    margin-bottom:1.5rem;
+    text-align:center;
+}
+.features-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1.5rem;
+}
+.feature-box {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.4rem 1.4rem;
+    transition:border-color 0.3s,box-shadow 0.3s;
+}
+.feature-box:hover {
+    border-color:rgba(255,215,0,0.35);
+    box-shadow:0 8px 30px rgba(255,215,0,0.08);
+}
+.feature-box-danger {
+    border-color:rgba(255,77,77,0.3);
+    background:rgba(255,50,50,0.04);
+}
+.feature-box-danger:hover { border-color:rgba(255,77,77,0.6);box-shadow:0 8px 30px rgba(255,50,50,0.1); }
+.feature-box h3 {
+    font-family:'Bebas Neue',cursive;
+    font-size:1rem;
+    letter-spacing:2px;
+    color:var(--gold);
+    margin:0 0 0.9rem;
+    padding-bottom:0.5rem;
+    border-bottom:1px solid var(--border);
+}
+.feature-box-danger h3 { color:#ff6b6b; }
+.feature-box ul {
+    list-style:none;
+    padding:0;margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+}
+.feature-box ul li {
+    font-size:0.88rem;
+    color:rgba(255,255,255,0.75);
+    padding-left:0.2rem;
+    line-height:1.4;
+}
+
+/* Pódium */
+.podium-section {
+    max-width:860px;
+    margin:3rem auto;
+    padding:0 2rem;
+    text-align:center;
+}
+.podium-header { margin-bottom:1.5rem; }
+.podium-subtitle {
+    display:block;
+    font-family:'Orbitron',sans-serif;
+    font-size:0.7rem;
+    letter-spacing:2px;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-top:0.3rem;
+}
+.podium-container {
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:1rem;
+}
+.podium-item {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+    flex:1;
+    max-width:200px;
+    border-radius:16px 16px 0 0;
+    padding:1.2rem 0.8rem 1rem;
+    position:relative;
+    transition:transform 0.3s;
+}
+.podium-item:hover { transform:translateY(-4px); }
+.level-1 {
+    background:linear-gradient(180deg,rgba(255,215,0,0.18),rgba(255,215,0,0.05));
+    border:1px solid rgba(255,215,0,0.4);
+    min-height:200px;
+}
+.level-2 {
+    background:linear-gradient(180deg,rgba(192,192,192,0.15),rgba(192,192,192,0.04));
+    border:1px solid rgba(192,192,192,0.3);
+    min-height:160px;
+}
+.level-3 {
+    background:linear-gradient(180deg,rgba(205,127,50,0.15),rgba(205,127,50,0.04));
+    border:1px solid rgba(205,127,50,0.3);
+    min-height:130px;
+}
+.podium-avatar {
+    width:64px;height:64px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,215,0,0.3);
+}
+.podium-number {
+    font-family:'Bebas Neue',cursive;
+    font-size:2rem;
+    line-height:1;
+}
+.level-1 .podium-number { color:var(--gold); }
+.level-2 .podium-number { color:#C0C0C0; }
+.level-3 .podium-number { color:#CD7F32; }
+.podium-content p {
+    font-size:0.82rem;
+    color:rgba(255,255,255,0.65);
+    margin:0;
+    text-align:center;
+}
+
+@media(max-width:600px) {
+    .sala-hero { flex-direction:column;text-align:center;align-items:center; }
+    .features-grid { grid-template-columns:1fr; }
+    .podium-container { gap:0.5rem; }
+}
+.asistencia-header  { display:flex;align-items:center;gap:1rem;margin-bottom:0.4rem; }
+.asistencia-header h3 { font-family:'Bebas Neue',cursive;font-size:1.6rem;letter-spacing:3px;color:var(--gold);margin:0; }
+.asistencia-refresh { padding:0.4rem 1rem;font-size:0.8rem; }
+.asistencia-desc    { font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem; }
+.asist-verde { color:#4ade80;font-size:1rem; }
+.asist-gris  { color:rgba(255,255,255,0.2);font-size:1rem; }
+.asistencia-mes     { font-family:'Orbitron',sans-serif;font-size:0.75rem;letter-spacing:2px;color:var(--accent);margin-bottom:0.6rem; }
+.asistencia-scroll  { overflow-x:auto;border-radius:12px;border:1px solid var(--border); }
+.asistencia-tabla   { border-collapse:collapse;min-width:100%;font-size:0.82rem; }
+
+/* Cabeceras */
+.asistencia-tabla thead tr { background:rgba(255,215,0,0.08); }
+.asist-th-clan  { position:sticky;left:0;z-index:2;background:#1a1a2e;padding:0.55rem 1rem;text-align:left;font-family:'Bebas Neue',cursive;letter-spacing:2px;color:var(--gold);white-space:nowrap;min-width:150px;border-right:1px solid var(--border); }
+.asist-th-dia   { padding:0.5rem 0.4rem;text-align:center;color:var(--muted);font-size:0.75rem;min-width:28px;border-right:1px solid rgba(255,255,255,0.04); }
+.asist-th-dia.asist-hoy { color:#FFD700;font-weight:900; }
+.asist-th-total { padding:0.5rem 0.6rem;text-align:center;color:var(--accent);font-size:0.75rem;white-space:nowrap;border-left:1px solid var(--border); }
+
+/* Filas */
+.asistencia-tabla tbody tr:nth-child(even) { background:rgba(255,255,255,0.02); }
+.asistencia-tabla tbody tr:hover { background:rgba(255,215,0,0.05); }
+.asist-td-clan  { position:sticky;left:0;z-index:1;background:#12122a;padding:0.5rem 1rem;font-weight:700;color:var(--text);white-space:nowrap;border-right:1px solid var(--border); }
+.asistencia-tabla tbody tr:hover .asist-td-clan { background:#1a1a3e; }
+.asist-celda    { text-align:center;padding:0.3rem 0.2rem;border-right:1px solid rgba(255,255,255,0.04);transition:background 0.15s; }
+.asist-presente { background:rgba(74,222,128,0.18);color:#4ade80;font-weight:700;font-size:0.85rem; }
+.asist-ausente  { background:transparent;color:rgba(255,255,255,0.1); }
+.asist-hoy-col  { outline:1px solid rgba(255,215,0,0.35); }
+.asist-td-total { text-align:center;padding:0.45rem 0.6rem;font-weight:700;color:#4ade80;border-left:1px solid var(--border);white-space:nowrap; }
+.asist-pct      { display:block;font-size:0.65rem;color:var(--muted);font-weight:400; }
+.clan-medals { display:flex;justify-content:space-around;padding:0.8rem;background:rgba(255,215,0,0.04);border-radius:10px; }
+.medal-item.oro         .medal-count { color:var(--gold); }
+.medal-item.plata       .medal-count { color:var(--silver); }
+.medal-item.bronce      .medal-count { color:var(--bronze); }
+/* Medallas especiales — mismo estilo que oro/plata/bronce */
+.medal-item.rubi        .medal-count { color:#E0115F; }
+.medal-item.oro-diamante .medal-count { color:#B9F2FF; }
+.medal-item.esmeralda   .medal-count { color:#50C878; }
+
+/* Título encima de los trofeos normales */
+.clan-trofeos-titulo { font-family:'Bebas Neue',cursive;font-size:0.85rem;letter-spacing:2px;color:var(--gold);opacity:0.7;text-align:center;margin-bottom:0.2rem; }
+
+/* ——— Sección LOGROS (Rubí, Oro+Diamante, Esmeralda) ——— */
+.clan-logros { margin-top:0.7rem;padding:0.65rem 0.8rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px; }
+.clan-logros-titulo { font-family:'Bebas Neue',cursive;font-size:0.9rem;letter-spacing:2px;color:#FFD700;margin-bottom:0.45rem;text-align:center;opacity:0.9; }
+.clan-logros-items { display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem; }
+
+/* Logros en ranking */
+.ranking-logros { font-size:0.78rem;margin-top:0.25rem;color:rgba(255,255,255,0.75); }
+.ranking-logros-label { font-weight:700;color:#FFD700;margin-right:0.3rem; }
+.clan-salas { display:flex;flex-direction:column;gap:0.5rem; }
+.clan-salas h4 { font-family:'Bebas Neue',cursive;font-size:1.1rem;color:var(--gold);letter-spacing:2px;margin-bottom:0.2rem; }
+.sala-ranks { display:flex;flex-direction:column;gap:0.4rem; }
+.sala-rank  { display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0.8rem;background:rgba(255,215,0,0.05);border:1px solid var(--border);border-radius:8px;transition:all 0.2s; }
+.sala-rank:hover { background:rgba(255,215,0,0.1);border-color:var(--gold); }
+.sala-rank.inactive { opacity:0.3; }
+.sala-name   { font-size:0.9rem;font-weight:600;color:var(--text); }
+.sala-points { font-family:'Orbitron',sans-serif;font-size:0.9rem;font-weight:700;color:var(--gold); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(0,0,0,0.98);border-bottom:2px solid var(--gold);
+    flex-direction:column;padding:1.5rem;gap:0.5rem;
+    transform:translateY(-110%);opacity:0;pointer-events:none;transition:all 0.35s ease;
+  }
+  .nav-links.open   { transform:translateY(0);opacity:1;pointer-events:all; }
+  .nav-links.active { transform:translateY(0);opacity:1;pointer-events:all; }
+  .nav-links a { padding:0.7rem 1rem;border-radius:8px;text-align:center; }
+
+  .stats-grid      { grid-template-columns: repeat(2,1fr); }
+  .stats-container { grid-template-columns: repeat(2,1fr); }
+  .clanes-lista    { grid-template-columns: 1fr; }
+  .clanes-container{ grid-template-columns: 1fr;padding:0 1rem 3rem; }
+  .clanes-grid     { grid-template-columns: 1fr; }
+  .ranking-item    { grid-template-columns:50px 55px 1fr;gap:0.8rem;padding:1rem 1.2rem; }
+  .rank-right      { grid-column:1/-1;flex-direction:row;justify-content:center;gap:1rem;padding-top:0.8rem;border-top:1px solid var(--border); }
+  .ranking-container { padding:0 1rem 3rem; }
+  .ranking-puntos  { grid-column:1/-1;flex-direction:row;justify-content:center;padding-top:0.8rem;border-top:1px solid var(--border); }
+  .filtros         { flex-direction:column;align-items:stretch; }
+  .filtros-container { flex-direction:column;align-items:stretch; }
+  .filtro-btn      { text-align:center; }
+  .podium-container{ gap:0.5rem; }
+  .botones-container { flex-direction:column;align-items:center; }
+  .btn-primary, .btn-secondary { width:100%;justify-content:center; }
+  .hero-section    { padding:3rem 1.5rem 2rem; }
+  #refreshIndicator { font-size:0.55rem;padding:0.35rem 0.7rem; }
+
+  /* Admin responsive */
+  .stats-grid     { grid-template-columns: repeat(2,1fr); padding: 0 1rem; }
+  .admin-filters  { padding: 0 1rem; }
+  .table-container{ padding: 0 1rem 2rem; }
+  .export-section { padding: 0 1rem; }
+  .roles-grid     { grid-template-columns: 1fr; }
+  .nav-center     { display: none; }
+  .btn-logout     { font-size: 0.75rem; padding: 0.35rem 0.7rem; }
+}

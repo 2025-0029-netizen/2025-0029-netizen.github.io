@@ -1,0 +1,343 @@
+/* ═══════════════════════════════════════════════
+   MULTIJUGADOR — El Continental CODM
+   ═══════════════════════════════════════════════ */
+
+/* ── HERO OVERRIDE (sin imagen de fondo, color propio) ── */
+.sala-hero {
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(10,10,40,0.95) 100%),
+    url('') center/cover no-repeat;
+  border-bottom: 2px solid var(--gold);
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.sala-hero::before {
+  content: '🎮';
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10rem;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* ── WRAPPER PRINCIPAL ── */
+.gameplay-settings {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.gameplay-settings > h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  text-shadow: 0 0 20px rgba(255,215,0,0.4);
+}
+
+.gameplay-settings ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── TÍTULOS DE SECCIÓN ── */
+li.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: linear-gradient(90deg, rgba(255,215,0,0.12) 0%, transparent 100%);
+  border-left: 4px solid var(--gold);
+  padding: 0.6rem 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ── ITEMS GENERALES ── */
+.gameplay-settings li:not(.section-title) {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,215,0,0.1);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  transition: border-color 0.2s;
+}
+.gameplay-settings li:not(.section-title):hover {
+  border-color: rgba(255,215,0,0.25);
+}
+
+/* ── GRID DE MODOS ── */
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.mode-card {
+  background: #0d0d0d;
+  border: 1px solid rgba(255,215,0,0.18);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.mode-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255,215,0,0.12);
+}
+
+.mode-card-header {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  font-weight: 900;
+}
+.mode-card-header.hp  { background: linear-gradient(90deg, #1a3a1a, #0d200d); color: #4ade80; border-bottom: 2px solid #4ade80; }
+.mode-card-header.snd { background: linear-gradient(90deg, #3a1a1a, #200d0d); color: #f87171; border-bottom: 2px solid #f87171; }
+.mode-card-header.ctl { background: linear-gradient(90deg, #1a1a3a, #0d0d20); color: #60a5fa; border-bottom: 2px solid #60a5fa; }
+
+.mode-card-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mode-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+.stat-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mode-card-maps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  justify-content: center;
+}
+
+.mini-map {
+  position: relative;
+  width: 68px;
+  text-align: center;
+  cursor: default;
+}
+.mini-map img {
+  width: 68px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: block;
+  transition: border-color 0.2s;
+}
+.mini-map:hover img { border-color: var(--gold); }
+.mini-map-name {
+  font-size: 0.6rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── CHIPS ── */
+.items-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.item-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  min-width: 72px;
+  max-width: 90px;
+  font-size: 0.62rem;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.item-chip:hover { transform: translateY(-2px); }
+.item-chip img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.chip-name {
+  color: #fff;
+  font-size: 0.6rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.item-chip.allowed {
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.3);
+}
+.item-chip.allowed:hover { box-shadow: 0 4px 16px rgba(34,197,94,0.2); }
+
+.item-chip.banned {
+  background: rgba(255,77,77,0.08);
+  border: 1px solid rgba(255,77,77,0.3);
+}
+.item-chip.banned:hover { box-shadow: 0 4px 16px rgba(255,77,77,0.2); }
+
+.item-chip-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.item-chip-text.allowed {
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.35);
+  color: #86efac;
+}
+.item-chip-text.banned {
+  background: rgba(255,77,77,0.1);
+  border: 1px solid rgba(255,77,77,0.3);
+  color: #fca5a5;
+}
+
+/* ── TABLA DE ROLES ── */
+.roles-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+.roles-table th {
+  background: rgba(255,215,0,0.12);
+  color: var(--gold);
+  padding: 0.5rem 0.8rem;
+  text-align: left;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255,215,0,0.2);
+}
+.roles-table td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--text);
+}
+.roles-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* ── GAME MODE BOXES ── */
+.game-mode {
+  background: #0a0a0a;
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 0.8rem;
+  transition: border-color 0.2s;
+}
+.game-mode:hover { border-color: rgba(255,215,0,0.3); }
+.game-mode h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+.game-mode p {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── WARNING / ALERT BOXES ── */
+.warning-box {
+  background: rgba(251,191,36,0.08);
+  border: 1px solid rgba(251,191,36,0.35);
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+}
+.warning-box p {
+  font-size: 0.85rem;
+  color: #fde68a;
+  line-height: 1.7;
+  margin-bottom: 0.3rem;
+}
+.warning-box p:last-child { margin-bottom: 0; }
+
+.alert-box {
+  background: rgba(255,77,77,0.07);
+  border: 1px solid rgba(255,77,77,0.3);
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+}
+.alert-box h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-bottom: 0.7rem;
+  letter-spacing: 1px;
+}
+.alert-box ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.alert-box ul li {
+  font-size: 0.85rem;
+  color: #fca5a5;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.alert-box ul li:hover { border: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .modes-grid { grid-template-columns: 1fr; }
+  .gameplay-settings { padding: 1.5rem 1rem 3rem; }
+  .gameplay-settings > h2 { font-size: 1rem; }
+  .mode-card-stats { gap: 1.2rem; }
+  .stat-val { font-size: 1.15rem; }
+  .item-chip { min-width: 62px; }
+}

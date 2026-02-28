@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multijugador - El Continental</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Multijugador.css">
+    <link rel="icon" type="image/png" href="logo%20de%20sala/logo%20de%20pagina%20.png">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ EL CONTINENTAL</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clanes.html">Clanes</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
+                <li><a href="salas.html">Salas</a></li>
+                <li><a href="https://forms.gle/6PdbKF8PYXojmiov9" target="_blank" class="cta-button">✚ Registrar Clan</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="sala-hero">
+        <div class="sala-hero-content">
+            <div class="sala-hero-back"><a href="salas.html">← Volver a Salas</a></div>
+            <h1 class="sala-hero-title">Multijugador</h1>
+            <p class="sala-hero-desc">El modo Multijugador de Call of Duty: Mobile es la esencia del juego competitivo. Equipos de 5 jugadores se enfrentan en mapas icónicos bajo modos como Hardpoint, Buscar y Destruir, y Control. Aquí se definen los campeones de El Continental: estrategia, coordinación y habilidad individual al máximo nivel.</p>
+            <div class="sala-hero-badge">🎮 Modo Online &nbsp;•&nbsp; 5v5 Competitivo</div>
+        </div>
+    </section>
+
+    <div class="gameplay-settings">
+        <h2>📋 REGLAS CHAMPIONSHIP 2026 — ACTUALIZADAS</h2>
+
+        <ul>
+            <!-- MODOS -->
+            <li class="section-title">⚙️ Configuración de Modos</li>
+            <li>
+                <div class="modes-grid">
+                    <div class="mode-card">
+                        <div class="mode-card-header hp">🎯 HARDPOINT</div>
+                        <div class="mode-card-stats">
+                            <div class="mode-stat"><span class="stat-val">250</span><span class="stat-lbl">Puntos</span></div>
+                            <div class="mode-stat"><span class="stat-val">600</span><span class="stat-lbl">Segundos</span></div>
+                        </div>
+                        <div class="mode-card-maps">
+                            <div class="mini-map"><img src="Reglas/Summit.png" onerror="this.style.display='none'" alt="Summit"><div class="mini-map-name">Summit</div></div>
+                            <div class="mini-map"><img src="Reglas/Hacienda.png" onerror="this.style.display='none'" alt="Hacienda"><div class="mini-map-name">Hacienda</div></div>
+                            <div class="mini-map"><img src="Reglas/Combine.jpg" onerror="this.style.display='none'" alt="Combine"><div class="mini-map-name">Combine</div></div>
+                            <div class="mini-map"><img src="Reglas/Takeoff.jpg" onerror="this.style.display='none'" alt="Takeoff"><div class="mini-map-name">Takeoff</div></div>
+                            <div class="mini-map"><img src="Reglas/Crossfire.jpg" onerror="this.style.display='none'" alt="Arsenal"><div class="mini-map-name">Arsenal</div></div>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-card-header snd">💣 BUSCAR Y DESTRUIR</div>
+                        <div class="mode-card-stats">
+                            <div class="mode-stat"><span class="stat-val">9</span><span class="stat-lbl">Rondas</span></div>
+                            <div class="mode-stat"><span class="stat-val">120</span><span class="stat-lbl">Segundos</span></div>
+                        </div>
+                        <div class="mode-card-maps">
+                            <div class="mini-map"><img src="Reglas/Tunisia.png" onerror="this.style.display='none'" alt="Tunisia"><div class="mini-map-name">Tunisia</div></div>
+                            <div class="mini-map"><img src="Reglas/Firing  Range.jpg" onerror="this.style.display='none'" alt="Firing Range"><div class="mini-map-name">Firing Range</div></div>
+                            <div class="mini-map"><img src="Reglas/Coastal.jpg" onerror="this.style.display='none'" alt="Coastal"><div class="mini-map-name">Coastal</div></div>
+                            <div class="mini-map"><img src="Reglas/Slums.png" onerror="this.style.display='none'" alt="Slums"><div class="mini-map-name">Slums</div></div>
+                            <div class="mini-map"><img src="Reglas/Apocalypse.png" onerror="this.style.display='none'" alt="Meltdown"><div class="mini-map-name">Meltdown</div></div>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-card-header ctl">🎮 CONTROL</div>
+                        <div class="mode-card-stats">
+                            <div class="mode-stat"><span class="stat-val">3</span><span class="stat-lbl">Rondas</span></div>
+                            <div class="mode-stat"><span class="stat-val">90</span><span class="stat-lbl">Segundos</span></div>
+                        </div>
+                        <div class="mode-card-maps">
+                            <div class="mini-map"><img src="Reglas/Raid.jpg" onerror="this.style.display='none'" alt="Raid"><div class="mini-map-name">Raid</div></div>
+                            <div class="mini-map"><img src="Reglas/Standoff.jpg" onerror="this.style.display='none'" alt="Standoff"><div class="mini-map-name">Standoff</div></div>
+                            <div class="mini-map"><img src="Reglas/Kurohana Metropolis.jpg" onerror="this.style.display='none'" alt="Crossroads Strike"><div class="mini-map-name">Crossroads Strike</div></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- ROLES -->
+            <li class="section-title">🔰 Ídoles de Clase de Arma</li>
+            <li>
+                <p style="line-height:1.8; margin-bottom:1rem;">Cada jugador recibe 2 roles de clase. No se pueden repetir roles ni usar armas fuera de la clase asignada durante la serie.</p>
+                <h4 style="color:var(--gold); margin-bottom:0.8rem;">Clases disponibles:</h4>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/ar-icon.jpg" onerror="this.style.display='none'" alt="AR"><div class="chip-name">🔫 Fusil de Asalto</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/smg-icon.jpg" onerror="this.style.display='none'" alt="SMG"><div class="chip-name">💨 Subfusil (SMG)</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/lmg-icon.jpg" onerror="this.style.display='none'" alt="LMG"><div class="chip-name">🔩 LMG</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/shotgun-icon.jpg" onerror="this.style.display='none'" alt="Escopeta"><div class="chip-name">💥 Escopeta</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/sniper-icon.jpg" onerror="this.style.display='none'" alt="Sniper"><div class="chip-name">🔭 Sniper</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/marksman-icon.jpg" onerror="this.style.display='none'" alt="Marksman"><div class="chip-name">🎯 Tirador</div></div>
+                </div>
+                <h4 style="color:var(--gold); margin:1.2rem 0 0.8rem;">Pool disponible por equipo:</h4>
+                <div class="items-flex">
+                    <span class="item-chip-text allowed">3 × AR</span>
+                    <span class="item-chip-text allowed">3 × SMG</span>
+                    <span class="item-chip-text allowed">1 × LMG</span>
+                    <span class="item-chip-text allowed">1 × Escopeta</span>
+                    <span class="item-chip-text allowed">1 × Sniper</span>
+                    <span class="item-chip-text allowed">1 × Tirador</span>
+                </div>
+                <h4 style="color:var(--gold); margin:1.2rem 0 0.8rem;">Ejemplo de roles por serie:</h4>
+                <table class="roles-table">
+                    <thead><tr><th>Jugador</th><th>Rol 1</th><th>Rol 2</th></tr></thead>
+                    <tbody>
+                        <tr><td>Jugador 1</td><td>AR</td><td>SMG</td></tr>
+                        <tr><td>Jugador 2</td><td>SMG</td><td>Escopeta</td></tr>
+                        <tr><td>Jugador 3</td><td>AR</td><td>LMG</td></tr>
+                        <tr><td>Jugador 4</td><td>AR</td><td>Sniper</td></tr>
+                        <tr><td>Jugador 5</td><td>SMG</td><td>Tirador</td></tr>
+                    </tbody>
+                </table>
+            </li>
+
+            <!-- RACHAS VÁLIDAS -->
+            <li class="section-title">✅ Rachas de Puntuación Válidas</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Solo estas rachas están permitidas. Todas las demás están restringidas.</p>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/hunter-killer.jpg" onerror="this.style.display='none'" alt="Hunter Killer"><div class="chip-name">Hunter Killer Drone</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/predator.jpg" onerror="this.style.display='none'" alt="Predator"><div class="chip-name">Predator Missile</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/emp.jpg" onerror="this.style.display='none'" alt="EMP"><div class="chip-name">EMP</div></div>
+                </div>
+            </li>
+
+            <!-- LETALES VÁLIDOS -->
+            <li class="section-title">✅ Letales Válidos</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Solo estos. Todos los demás letales están restringidos.</p>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/frag.jpg" onerror="this.style.display='none'" alt="Frag"><div class="chip-name">Granada Fragmentación</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/semtex.jpg" onerror="this.style.display='none'" alt="Semtex"><div class="chip-name">Semtex</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/tomahawk.jpg" onerror="this.style.display='none'" alt="Hacha"><div class="chip-name">Hacha de Combate</div></div>
+                </div>
+            </li>
+
+            <!-- TÁCTICOS VÁLIDOS -->
+            <li class="section-title">✅ Tácticos Válidos</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Solo estos. Todos los demás tácticos están restringidos.</p>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/claymore.jpg" onerror="this.style.display='none'" alt="Trampa"><div class="chip-name">Trampa</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/flashbang.jpg" onerror="this.style.display='none'" alt="Granada Cegadora"><div class="chip-name">Granada Cegadora</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/smoke.jpg" onerror="this.style.display='none'" alt="Humo"><div class="chip-name">Granada de Humo</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/concussion.jpg" onerror="this.style.display='none'" alt="Spray"><div class="chip-name">Spray</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/emp-grenade.jpg" onerror="this.style.display='none'" alt="PEM"><div class="chip-name">PEM</div></div>
+                </div>
+            </li>
+
+            <!-- ARMAS BAN -->
+            <li class="section-title">🚫 Armas Baneadas</li>
+            <li>
+                <h4 style="color:#ff8080; margin-bottom:0.6rem;">Francotiradores:</h4>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/NA-45.png" onerror="this.style.display='none'" alt="NA-45"><div class="chip-name">NA-45</div></div>
+                    <div class="item-chip banned"><img src="Reglas/svd.jpeg" onerror="this.style.display='none'" alt="SVD"><div class="chip-name">SVD</div></div>
+                    <div class="item-chip banned"><img src="Reglas/xpr.jpeg" onerror="this.style.display='none'" alt="XPR"><div class="chip-name">XPR</div></div>
+                    <div class="item-chip banned"><div class="chip-name">SO14</div></div>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Escopetas:</h4>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/Argus.jpeg" onerror="this.style.display='none'" alt="Argus"><div class="chip-name">Argus</div></div>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Pistolas:</h4>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/Shorty.jpeg" onerror="this.style.display='none'" alt="Shorty"><div class="chip-name">Shorty</div></div>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Lanzadores:</h4>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/d13.jpeg" onerror="this.style.display='none'" alt="D13"><div class="chip-name">D13 Sector</div></div>
+                    <div class="item-chip banned"><img src="Reglas/fhj.jpeg" onerror="this.style.display='none'" alt="FHJ-18"><div class="chip-name">FHJ-18</div></div>
+                    <div class="item-chip banned"><img src="Reglas/smsr.jpeg" onerror="this.style.display='none'" alt="SMRS"><div class="chip-name">SMRS</div></div>
+                    <div class="item-chip banned"><img src="Reglas/thrumper.jpeg" onerror="this.style.display='none'" alt="Thumper"><div class="chip-name">Thumper</div></div>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Letales baneados:</h4>
+                <div class="items-flex">
+                    <span class="item-chip-text banned">C4</span>
+                    <span class="item-chip-text banned">Granada Racimo</span>
+                    <span class="item-chip-text banned">Granada de Contacto</span>
+                    <span class="item-chip-text banned">Cóctel Molotov</span>
+                    <span class="item-chip-text banned">Termita</span>
+                    <span class="item-chip-text banned">Mina Trampa</span>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Tácticos baneados:</h4>
+                <div class="items-flex">
+                    <span class="item-chip-text banned">Bomba Cryo</span>
+                    <span class="item-chip-text banned">Granada Señuelo</span>
+                    <span class="item-chip-text banned">Douser</span>
+                    <span class="item-chip-text banned">Granada Eco</span>
+                    <span class="item-chip-text banned">Dron Flash</span>
+                    <span class="item-chip-text banned">Granada de Gas</span>
+                    <span class="item-chip-text banned">Sensor de Latidos</span>
+                    <span class="item-chip-text banned">Inyección Estimulante</span>
+                    <span class="item-chip-text banned">Bola de Tormenta</span>
+                    <span class="item-chip-text banned">Sensor Trampa</span>
+                </div>
+            </li>
+
+            <!-- ACCESORIOS BAN -->
+            <li class="section-title">🛠️ Accesorios Baneados</li>
+            <li>
+                <h4 style="color:#ff8080; margin-bottom:0.6rem;">Ventajas de arma (todas las armas):</h4>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/Akimbo.jpeg" onerror="this.style.display='none'" alt="Akimbo"><div class="chip-name">Akimbo</div></div>
+                    <div class="item-chip banned"><img src="Reglas/Disible.jpeg" onerror="this.style.display='none'" alt="Disable"><div class="chip-name">Disable</div></div>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Munición baneada (todas las armas):</h4>
+                <div class="items-flex">
+                    <span class="item-chip-text banned">Munición Termita</span>
+                    <span class="item-chip-text banned">Munición Dragón</span>
+                    <span class="item-chip-text banned">Munición Explosiva</span>
+                    <span class="item-chip-text banned">Munición Incendiaria</span>
+                    <span class="item-chip-text banned">Slug (escopetas)</span>
+                </div>
+                <h4 style="color:#ff8080; margin:1rem 0 0.6rem;">Accesorios baneados por arma:</h4>
+                <div style="display:flex; flex-wrap:wrap; gap:0.8rem;">
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">3-Line Rifle</p>
+                        <div class="items-flex"><span class="item-chip-text banned">EMPRESS 514MM F01</span><span class="item-chip-text banned">Bipod</span><span class="item-chip-text banned">KOVALEVSKAYA S01</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">AS VAL</p>
+                        <div class="items-flex"><span class="item-chip-text banned">15 Round FMG Mag</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">BP-50</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Leroy 438mm</span><span class="item-chip-text banned">Recoil Booster</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">CR-AMAX</p>
+                        <div class="items-flex"><span class="item-chip-text banned">M67 Ammo</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Crossbow</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Thermite Bolt</span><span class="item-chip-text banned">Gas Bolt</span><span class="item-chip-text banned">Sticky Bolt</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">CX9</p>
+                        <div class="items-flex"><span class="item-chip-text banned">9mm Hollow Point</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">DLQ</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Concussion Ammo</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">DRH</p>
+                        <div class="items-flex"><span class="item-chip-text banned">OTM Mag</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Hades</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Heartseeker</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">HS0405</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Thunder Rounds</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">HVK</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Large Caliber Mag</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">M4</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Underbarrel Launcher</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Machine Pistol</p>
+                        <div class="items-flex"><span class="item-chip-text banned">VDD 35MM Short Barrel</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">MG42</p>
+                        <div class="items-flex"><span class="item-chip-text banned">KRAUSNICK 355MM Rapid</span><span class="item-chip-text banned">6.5 ARISAKA 125R Drum</span><span class="item-chip-text banned">Recoil Booster</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Oden</p>
+                        <div class="items-flex"><span class="item-chip-text banned">OWC Ranger Barrel</span><span class="item-chip-text banned">OWC Marksman Barrel</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Ram7</p>
+                        <div class="items-flex"><span class="item-chip-text banned">FORGE TAC Eclipse</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">RPD</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Infinite Ammo</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">SKS</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Tactical Foregrip A</span><span class="item-chip-text banned">Granulated Grip Tape</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Tundra</p>
+                        <div class="items-flex"><span class="item-chip-text banned">26.5" Hammer Forged</span><span class="item-chip-text banned">28.2" Tiger Team</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Type 19</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Hi-Accuracy Sniper Ammo</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">Type 63</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Airborne Elastic Wrap</span><span class="item-chip-text banned">16.4" Titanium Barrel</span><span class="item-chip-text banned">18.3" Strike Team</span></div>
+                    </div>
+                    <div class="game-mode" style="flex:1; min-width:200px; padding:0.8rem;">
+                        <p style="color:var(--gold); font-weight:700; margin-bottom:0.4rem;">USS-9</p>
+                        <div class="items-flex"><span class="item-chip-text banned">Carbine Pro Barrel</span><span class="item-chip-text banned">16.6" Factory Carbine</span><span class="item-chip-text banned">13.1" First Responder</span><span class="item-chip-text banned">.41 AE 32-Round Mags</span></div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- OPERADORES VÁLIDOS -->
+            <li class="section-title">✅ Habilidades de Operador Válidas</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Solo estos operadores están permitidos. Ningún jugador del mismo equipo puede tener activo el mismo operador simultáneamente.</p>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/annihilator.jpg" onerror="this.style.display='none'" alt="Aniquiladora"><div class="chip-name">Aniquiladora</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/claw.jpg" onerror="this.style.display='none'" alt="Garra"><div class="chip-name">Garra</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/death-machine.jpg" onerror="this.style.display='none'" alt="Máquina de Muerte"><div class="chip-name">Máquina de Muerte</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/equalizer.jpg" onerror="this.style.display='none'" alt="Igualador"><div class="chip-name">Igualador</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/gravity-spikes.jpg" onerror="this.style.display='none'" alt="Picas Gravedad"><div class="chip-name">Picas de Gravedad</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/gravity-vortex.jpg" onerror="this.style.display='none'" alt="Cañón Vórtice"><div class="chip-name">Cañón Vórtice</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/purifier.jpg" onerror="this.style.display='none'" alt="Purificador"><div class="chip-name">Purificador</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/sparrow.jpg" onerror="this.style.display='none'" alt="Halcón"><div class="chip-name">Halcón</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/tempest.jpg" onerror="this.style.display='none'" alt="Tempest"><div class="chip-name">Tempest</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/war-machine.jpg" onerror="this.style.display='none'" alt="Máquina de Guerra"><div class="chip-name">Máquina de Guerra</div></div>
+                </div>
+                <div class="warning-box" style="margin-top:1rem;">
+                    <p><strong>⚠️ Penalización:</strong> El equipo que viole la regla de operador único perderá el mapa donde ocurrió la infracción.</p>
+                </div>
+            </li>
+
+            <!-- VENTAJAS VÁLIDAS -->
+            <li class="section-title">✅ Ventajas Válidas</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Solo se permiten las ventajas listadas. Todas las demás están restringidas.</p>
+                <div class="items-flex">
+                    <div class="item-chip allowed"><img src="Reglas/stalker.jpg" onerror="this.style.display='none'" alt="Acechador"><div class="chip-name">Acechador</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/quick-fix.jpg" onerror="this.style.display='none'" alt="Recuperación Rápida"><div class="chip-name">Recuperación Rápida</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/agile.jpg" onerror="this.style.display='none'" alt="Ágil"><div class="chip-name">Ágil</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/lightweight.jpg" onerror="this.style.display='none'" alt="Peso Ligero"><div class="chip-name">Peso Ligero</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/cold-blooded.jpg" onerror="this.style.display='none'" alt="Fantasma"><div class="chip-name">Fantasma</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/hardened.jpg" onerror="this.style.display='none'" alt="Dureza"><div class="chip-name">Dureza</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/toughness.jpg" onerror="this.style.display='none'" alt="Pulmones Acero"><div class="chip-name">Pulmones de Acero</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/gunsmith.jpg" onerror="this.style.display='none'" alt="Armero"><div class="chip-name">Armero</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/innate-talent.jpg" onerror="this.style.display='none'" alt="Habilidad Innata"><div class="chip-name">Habilidad Innata</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/flashback.jpg" onerror="this.style.display='none'" alt="Rapidez"><div class="chip-name">Rapidez</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/shrapnel.jpg" onerror="this.style.display='none'" alt="Metralla"><div class="chip-name">Metralla</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/extra-tactical.jpg" onerror="this.style.display='none'" alt="Lanzador Extra"><div class="chip-name">Lanzador Extra</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/skulker.jpg" onerror="this.style.display='none'" alt="Leopardo"><div class="chip-name">Leopardo</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/spotter.jpg" onerror="this.style.display='none'" alt="Mecánica Táctica"><div class="chip-name">Mecánica Táctica</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/espionage.jpg" onerror="this.style.display='none'" alt="Espionaje"><div class="chip-name">Espionaje</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/despiadado.jpg" onerror="this.style.display='none'" alt="Despiadado"><div class="chip-name">Despiadado</div></div>
+                    <div class="item-chip allowed"><img src="Reglas/linterna.jpg" onerror="this.style.display='none'" alt="Linterna"><div class="chip-name">Linterna</div></div>
+                </div>
+            </li>
+
+            <!-- SKINS BAN -->
+            <li class="section-title">🎨 Skins de Personajes Baneados</li>
+            <li>
+                <p style="margin-bottom:0.8rem; color:rgba(255,255,255,0.7);">Las siguientes skins <strong>no</strong> pueden usarse en ningún momento del partido.</p>
+                <div class="items-flex">
+                    <div class="item-chip banned"><img src="Reglas/cosmic-silverback.jpg" onerror="this.style.display='none'" alt="Cosmic Silverback"><div class="chip-name">Cosmic Silverback</div></div>
+                    <div class="item-chip banned"><img src="Reglas/death-angel-trench.jpg" onerror="this.style.display='none'" alt="Death Angel Trench"><div class="chip-name">Death Angel — Trench</div></div>
+                    <div class="item-chip banned"><img src="Reglas/death-angel-shrouded.jpg" onerror="this.style.display='none'" alt="Death Angel Shrouded"><div class="chip-name">Death Angel — Shrouded</div></div>
+                    <div class="item-chip banned"><img src="Reglas/florence-night-terror.jpg" onerror="this.style.display='none'" alt="Florence Night Terror"><div class="chip-name">Florence — Night Terror</div></div>
+                    <div class="item-chip banned"><img src="Reglas/golem-everglade.jpg" onerror="this.style.display='none'" alt="Golem Everglade"><div class="chip-name">Golem — Everglade</div></div>
+                    <div class="item-chip banned"><img src="Reglas/grinch-night-fang.jpg" onerror="this.style.display='none'" alt="Grinch Night Fang"><div class="chip-name">Grinch — Night Fang</div></div>
+                    <div class="item-chip banned"><img src="Reglas/grinch-wreath.jpg" onerror="this.style.display='none'" alt="Grinch Wreath Havoc"><div class="chip-name">Grinch — Wreath Havoc</div></div>
+                    <div class="item-chip banned"><img src="Reglas/grinch-lionheart.jpg" onerror="this.style.display='none'" alt="Grinch Lionheart"><div class="chip-name">Grinch — The Lionheart</div></div>
+                    <div class="item-chip banned"><img src="Reglas/roze-murk.jpg" onerror="this.style.display='none'" alt="Roze Murk"><div class="chip-name">Roze — Murk</div></div>
+                    <div class="item-chip banned"><img src="Reglas/roze-rook.jpg" onerror="this.style.display='none'" alt="Roze Rook"><div class="chip-name">Roze — Rook</div></div>
+                    <div class="item-chip banned"><img src="Reglas/Zombie - Wicht Warden.jpeg" onerror="this.style.display='none'" alt="Zombie Wicht Warden"><div class="chip-name">Zombie — Wicht Warden</div></div>
+                </div>
+                <div class="warning-box" style="margin-top:1rem;">
+                    <p>🚫 Todas las <strong>skins Legendarias de Utilidad</strong> están restringidas.</p>
+                    <p>🙅 Todos los <strong>emotes</strong> están restringidos durante cualquier momento del partido.</p>
+                </div>
+            </li>
+
+            <!-- COMODINES -->
+            <li class="section-title">🃏 Comodines</li>
+            <li>
+                <div class="alert-box">
+                    <h4>🚫 Todos los Comodines están Restringidos</h4>
+                    <ul><li>Ningún comodín puede usarse en partidas competitivas de Etapa 3 en adelante.</li></ul>
+                </div>
+            </li>
+
+            <!-- IMPORTANTE -->
+            <li class="section-title">⚠️ IMPORTANTE</li>
+            <li>
+                <div class="alert-box">
+                    <h4>🔴 Reglas Críticas</h4>
+                    <ul>
+                        <li><strong>NO EMOTES</strong> — Prohibidos en cualquier momento durante el partido.</li>
+                        <li><strong>NO Letal / Táctico Legendario</strong> — Todas las skins legendarias de utilidad están baneadas.</li>
+                        <li><strong>TODO el equipamiento baneado</strong> — El equipo perderá el mapa independientemente de si fue intencional o no.</li>
+                        <li><strong>Los equipos perderán el mapa</strong> que hayan jugado si se comprueba el uso de cualquier ítem restringido.</li>
+                        <li><strong>Contenido nuevo:</strong> Cualquier arma, perk u operador nuevo se considera restringido <strong>21 días</strong> desde su lanzamiento.</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- PROCESO DE VETO -->
+            <li class="section-title">🔀 Proceso de Veto (Selección de Mapas)</li>
+            <li>
+                <p style="line-height:1.8; margin-bottom:1rem;">La selección de mapas y lados se hace por Discord. El equipo de mayor semilla elige si es Equipo 1 (E1) o Equipo 2 (E2).</p>
+                <div class="game-mode">
+                    <h3>BO5 — Mejor de 5 (Etapa 3 y Final)</h3>
+                    <p><strong>HP:</strong> E1 banea → E2 banea → E1 elige Mapa1 (E2 lado) → E2 elige Mapa4 (E1 lado)</p>
+                    <p style="margin-top:0.5rem;"><strong>S&amp;D:</strong> E2 banea → E1 banea → E2 elige Mapa2 (E1 lado) → E1 elige Mapa5 (E2 lado)</p>
+                    <p style="margin-top:0.5rem;"><strong>Control:</strong> E1 banea → E2 banea → Mapa restante = Mapa3 (E1 lado)</p>
+                </div>
+                <div class="game-mode">
+                    <h3>BO7 Gran Final con Ventaja de Mapa</h3>
+                    <p><strong>HP:</strong> E1 banea → E2 banea → E1 M1 → E2 M4</p>
+                    <p style="margin-top:0.5rem;"><strong>S&amp;D:</strong> E2 banea → E1 banea → E2 M2 → E1 M6</p>
+                    <p style="margin-top:0.5rem;"><strong>Control:</strong> E1 M3 → E2 M5</p>
+                </div>
+                <div class="game-mode">
+                    <h3>BO3 — Mejor de 3</h3>
+                    <p><strong>HP:</strong> 4 bans (E1·E2·E1·E2) → Mapa restante = M1 (E1 lado)</p>
+                    <p style="margin-top:0.5rem;"><strong>S&amp;D:</strong> 4 bans (E2·E1·E2·E1) → Mapa restante = M2 (E2 lado)</p>
+                    <p style="margin-top:0.5rem;"><strong>Control:</strong> E1 banea → E2 banea → Mapa restante = M3 (E1 lado)</p>
+                </div>
+            </li>
+
+            <!-- CREACIÓN DE SALA -->
+            <li class="section-title">🕹️ Cómo Crear la Sala</li>
+            <li>
+                <div class="game-mode">
+                    <h3>Paso 1 — Agregar Jugadores</h3>
+                    <p style="line-height:1.8;">Pantalla principal → Amigos → "Agregar Amigos" → busca por nombre de usuario (distingue mayúsculas).</p>
+                </div>
+                <div class="game-mode">
+                    <h3>Paso 2 — Crear Partida Privada</h3>
+                    <p style="line-height:1.8;">Multijugador → ícono tres líneas → "Privado". Crea el lobby primero, luego invita a los demás.</p>
+                </div>
+                <div class="game-mode">
+                    <h3>Paso 3 — Configurar y Arrancar</h3>
+                    <p style="line-height:1.8;">"+' junto al nombre del jugador para invitar → elige equipo en casilla vacía → "Configuración de Partida" para ajustar → selecciona modo y mapa → "Iniciar".</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>El Continental</h3>
+                <p>Comunidad Élite de Call of Duty Mobile</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="clanes.html">Clanes</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="salas.html">Salas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociales</h3>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@elcontinentalcodm" target="_blank">TikTok</a>
+                    <a href="https://www.instagram.com/elcontinentalcodm" target="_blank">Instagram</a>
+                    <a href="https://discord.com/invite/BFgupYEYUq" target="_blank">Discord</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 El Continental - Comunidad Call of Duty Mobile</p>
+        </div>
+    </footer>
+
+    <script src="config-global.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', initHamburger);</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clanes - El Continental</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo%20de%20sala/logo%20de%20pagina%20.png">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ EL CONTINENTAL</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clanes.html">Clanes</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
+                <li><a href="salas.html">Salas</a></li>
+                <li><a href="https://forms.gle/6PdbKF8PYXojmiov9" target="_blank" class="cta-button">✚ Registrar Clan</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>⚔️ CLANES REGISTRADOS</h1>
+        <p>Conoce a todos los equipos que compiten por la gloria</p>
+        <p class="clanes-count" id="clanesCount">Cargando...</p>
+    </section>
+
+    <div class="clanes-buscar">
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="clanSearch" placeholder="Buscar por nombre, tag o ID..." autocomplete="off">
+        </div>
+        <div class="filtros-container clanes-filtros">
+            <button class="filtro-btn active" data-trofeo="todos">🏆 Todos</button>
+            <button class="filtro-btn filtro-oro"  data-trofeo="oro">🥇 Oro</button>
+            <button class="filtro-btn filtro-plata" data-trofeo="plata">🥈 Plata</button>
+            <button class="filtro-btn filtro-bronce" data-trofeo="bronce">🥉 Bronce</button>
+        </div>
+        <div class="clanes-resultado" id="clanesResultado"></div>
+    </div>
+
+    <div class="clanes-container" id="clanesContainer">
+        <div class="no-clanes">⏳ Cargando clanes...</div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>El Continental</h3>
+                <p>Comunidad Élite de Call of Duty Mobile</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="clanes.html">Clanes</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociales</h3>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@elcontinentalcodm" target="_blank">TikTok</a>
+                    <a href="https://www.instagram.com/elcontinentalcodm" target="_blank">Instagram</a>
+                    <a href="https://discord.com/invite/BFgupYEYUq" target="_blank">Discord</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 El Continental - Comunidad Call of Duty Mobile</p>
+        </div>
+    </footer>
+
+    <script src="config-global.js"></script>
+    <script src="clanes.js"></script>
+</body>
+</html>

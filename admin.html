@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - El Continental</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo%20de%20sala/logo%20de%20pagina%20.png">
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div class="login-container" id="loginContainer">
+    <div class="login-box">
+        <img src="logo%20de%20sala/logo%20de%20pagina%20.jpg" alt="El Continental"
+             class="login-logo" onerror="this.style.display='none'">
+        <h1>🔐 Panel de Administración</h1>
+        <p>El Continental - Call of Duty Mobile</p>
+
+        <div class="login-form">
+            <div class="input-group">
+                <label for="username">👤 Usuario</label>
+                <input type="text" id="username" placeholder="Tu usuario">
+            </div>
+            <div class="input-group">
+                <label for="password">🔑 Contraseña</label>
+                <input type="password" id="password" placeholder="Tu contraseña">
+            </div>
+            <button class="btn-login" id="btnLogin">Ingresar</button>
+            <div class="login-error" id="loginError">❌ Usuario o contraseña incorrectos</div>
+        </div>
+
+        <div class="login-roles">
+            <p class="roles-title">Niveles de acceso</p>
+            <div class="roles-grid">
+                <div class="role-item role-viewer">
+                    <span>👁️</span><strong>Host de Sala</strong>
+                    <small>Nombre, tag, logo, trofeos, puntos de salas</small>
+                </div>
+                <div class="role-item role-master">
+                    <span>👑</span><strong>CEO</strong>
+                    <small>Acceso total: contactos, líderes, exportar CSV</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-footer">
+            <a href="index.html">← Volver al inicio</a>
+        </div>
+    </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div class="admin-container" id="adminContainer" style="display:none">
+
+    <nav class="admin-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ EL CONTINENTAL</a>
+            <div class="nav-center">
+                <span class="nav-title">Panel de Administración</span>
+                <span class="rol-badge" id="rolBadge">—</span>
+            </div>
+            <button class="btn-logout" id="btnLogout">🚪 Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-info">
+                <div class="stat-value" id="totalClanes">—</div>
+                <div class="stat-label">Clanes Totales</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+                <div class="stat-value" id="clanesActivos">—</div>
+                <div class="stat-label">Clanes Activos</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-info">
+                <div class="stat-value" id="totalJugadores">—</div>
+                <div class="stat-label">Jugadores Estimados</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🏅</div>
+            <div class="stat-info">
+                <div class="stat-value" id="totalTrofeos">—</div>
+                <div class="stat-label">Trofeos Otorgados</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ PESTAÑAS ══ -->
+    <div class="admin-tabs" id="adminTabs">
+        <button class="admin-tab active" data-tab="clanes">📋 Clanes</button>
+        <button class="admin-tab" data-tab="asistencia">📅 Asistencia</button>
+        <button class="admin-tab only-master" data-tab="contactos">📞 Contactos</button>
+        <button class="admin-tab" data-tab="medallas">🏅 Medallas</button>
+    </div>
+
+    <!-- ══ PANEL: CLANES ══ -->
+    <div class="admin-panel" id="panel-clanes">
+
+    <!-- Filtros -->
+    <div class="admin-filters">
+        <input type="text" id="searchInput" class="search-input"
+               placeholder="🔍 Buscar por nombre, tag o ID...">
+        <select id="filterEstado" class="filter-select only-master">
+            <option value="all">Todos los clanes</option>
+            <option value="active">Solo activos</option>
+            <option value="inactive">Solo pendientes</option>
+        </select>
+        <button class="btn-refresh" id="btnRefresh">🔄 Actualizar</button>
+    </div>
+
+    <!-- Tabla dinámica según rol -->
+    <div class="table-container">
+        <h2>📋 Directorio de Clanes</h2>
+        <p class="table-subtitle">Ordenado por puntos de salas (mayor a menor)</p>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <thead id="tablaHead"></thead>
+                <tbody id="tablaBody">
+                    <tr><td colspan="20" class="loading-cell">⏳ Cargando datos...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Exportar solo master -->
+    <div class="export-section only-master">
+        <h3>📥 Exportar Datos</h3>
+        <button class="btn-export" id="btnExportContacts">📞 Exportar Contactos (CSV)</button>
+        <button class="btn-export" id="btnExportPuntos">📊 Exportar Puntos (CSV)</button>
+    </div>
+
+    </div><!-- /panel-clanes -->
+
+    <!-- ══ PANEL: ASISTENCIA ══ -->
+    <div class="admin-panel" id="panel-asistencia" style="display:none">
+    <div class="asistencia-section" id="asistenciaSection">
+        <div class="asistencia-header">
+            <h3>📅 Asistencia de Clanes</h3>
+            <button class="btn-refresh asistencia-refresh" id="btnRefreshAsistencia">🔄 Actualizar</button>
+        </div>
+        <p class="asistencia-desc">Registro mensual de asistencia. <span class="asist-verde">■</span> Asistió &nbsp; <span class="asist-gris">■</span> No asistió</p>
+        <div class="asistencia-wrapper" id="asistenciaWrapper">
+            <p style="color:var(--muted);text-align:center;padding:2rem">⏳ Cargando asistencia...</p>
+        </div>
+    </div>
+    </div><!-- /panel-asistencia -->
+
+    <!-- ══ PANEL: CONTACTOS (solo CEO) ══ -->
+    <div class="admin-panel only-master" id="panel-contactos" style="display:none">
+    <div class="contactos-section">
+        <div class="contactos-header">
+            <h3>📞 Directorio de Contactos</h3>
+            <input type="text" id="contactosSearch" class="search-input" placeholder="🔍 Buscar clan, líder o modo..." style="max-width:320px">
+        </div>
+        <p class="contactos-desc">Información privada — visible solo para el CEO. Fuente: hoja de registro.</p>
+        <div class="contactos-grid" id="contactosGrid">
+            <p style="color:var(--muted);text-align:center;padding:3rem">⏳ Cargando contactos...</p>
+        </div>
+    </div>
+    </div><!-- /panel-contactos -->
+
+    <!-- ══ PANEL: MEDALLAS ══ -->
+    <div class="admin-panel" id="panel-medallas" style="display:none">
+    <div class="medallas-especiales-section" id="medallasSection">
+        <h3>🏅 Medallas Especiales</h3>
+        <p class="medallas-desc">
+            Las medallas se cargan desde Google Sheets automáticamente.
+            Solo aparecen los clanes que tienen al menos una medalla activa.
+        </p>
+        <div class="medallas-leyenda">
+            <span class="badge-medalla rubi">💎 Rubí</span>
+            <small>Torneo</small>
+            <span class="badge-medalla oro-diamante">🔷 Oro+Diamante</span>
+            <small>Entre Comunidades</small>
+            <span class="badge-medalla esmeralda">💚 Esmeralda</span>
+            <small>Torneo de MJ</small>
+        </div>
+        <div class="medallas-grid" id="medallasGrid">
+            <p style="color:var(--muted);text-align:center;padding:2rem">⏳ Cargando clanes...</p>
+        </div>
+    </div>
+    </div><!-- /panel-medallas -->
+
+</div>
+
+<script src="config-global.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>     

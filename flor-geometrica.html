@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor Geométrica</title>
+  <link rel="stylesheet" href="flor-geometrica.css">
+</head>
+<body>
+  <audio id="bg-music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+  <canvas id="c"></canvas>
+  <script src="flor-geometrica.js"></script>
+  <script>
+    // Music
+    const music = document.getElementById("bg-music");
+    if (music) {
+      music.volume = 0.45;
+      music.play().catch(() => {
+        document.body.addEventListener("click", () => music.play(), { once: true });
+        document.body.addEventListener("touchstart", () => music.play(), { once: true });
+      });
+    }
+  </script>
+</body>
+</html>

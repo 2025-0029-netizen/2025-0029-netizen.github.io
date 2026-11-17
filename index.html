@@ -1,310 +1,444 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="purple-flowers.css" />
-    <title>Feliz Navidad</title>
-  </head>
-  <body class="not-loaded">
-    <audio id="bg-music" loop preload="auto">
-      <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-    <div class="night"></div>
-    <div class="mensaje">Feliz Navidad - Toca la pantalla</div>
-    <div class="flowers">
-      <div class="flower flower--1">
-        <div class="flower__leafs flower__leafs--1">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__white-circle"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flores de Navidad</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-          <div class="flower__light flower__light--1"></div>
-          <div class="flower__light flower__light--2"></div>
-          <div class="flower__light flower__light--3"></div>
-          <div class="flower__light flower__light--4"></div>
-          <div class="flower__light flower__light--5"></div>
-          <div class="flower__light flower__light--6"></div>
-          <div class="flower__light flower__light--7"></div>
-          <div class="flower__light flower__light--8"></div>
+    body {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at center, #1a0a2e 0%, #0a0015 70%, #000 100%);
+      color: #f5c6ff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+        radial-gradient(1px 1px at 40% 70%, #e0a7ff, transparent),
+        radial-gradient(1.5px 1.5px at 60% 20%, #fff, transparent),
+        radial-gradient(1px 1px at 80% 50%, #c439d6, transparent),
+        radial-gradient(1px 1px at 10% 80%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 90% 10%, #e16bff, transparent);
+      background-size: 200% 200%;
+      animation: twinkle 8s ease-in-out infinite alternate;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.8; }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      z-index: 1;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-shadow: 
+        0 0 15px #e16bff,
+        0 0 30px #c439d6,
+        0 0 50px rgba(225, 107, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.75;
+      letter-spacing: 0.1em;
+      font-weight: 300;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: rgba(40, 10, 60, 0.55);
+      border: 1px solid rgba(225, 107, 255, 0.25);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #e16bff;
+      box-shadow: 
+        0 20px 40px rgba(225, 107, 255, 0.25),
+        0 0 30px rgba(196, 57, 214, 0.2);
+    }
+
+    .card-preview {
+      height: 180px;
+      background: linear-gradient(135deg, #2a0a40, #1a0528);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview::before {
+      content: "🌸";
+      font-size: 4rem;
+      filter: drop-shadow(0 0 15px #e16bff);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .card-preview.purple::before {
+      content: "💜";
+    }
+
+    .card-preview.tree::before {
+      content: "🎄";
+      font-size: 4.2rem;
+    }
+
+    .card-preview.ascii::before {
+      content: "✦";
+      font-size: 3.8rem;
+      color: #f4cc8b;
+      text-shadow: 0 0 20px #f4cc8b;
+    }
+
+    .card-preview.lilies::before {
+      content: "🌸";
+      font-size: 3.8rem;
+    }
+
+    .card-preview.geo::before {
+      content: "✦";
+      font-size: 3.6rem;
+      color: #00ffea;
+      text-shadow: 0 0 18px #00ffea;
+    }
+
+    .card-preview.heart::before {
+      content: "❤️";
+      font-size: 3.6rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .card-body {
+      padding: 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-btn {
+      margin-top: 18px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #c439d6, #e16bff);
+      color: white;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-align: center;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover .card-btn {
+      opacity: 0.9;
+    }
+
+    /* Sección agregar más */
+    .add-section {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(30, 8, 50, 0.6);
+      border: 1px dashed rgba(225, 107, 255, 0.4);
+      border-radius: 20px;
+      padding: 35px 30px;
+      text-align: center;
+      z-index: 1;
+      backdrop-filter: blur(6px);
+    }
+
+    .add-section h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .add-section p {
+      opacity: 0.75;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .upload-area {
+      border: 2px dashed rgba(225, 107, 255, 0.35);
+      border-radius: 14px;
+      padding: 30px 20px;
+      background: rgba(0, 0, 0, 0.25);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .upload-area:hover,
+    .upload-area.dragover {
+      border-color: #e16bff;
+      background: rgba(225, 107, 255, 0.08);
+    }
+
+    .upload-area input {
+      display: none;
+    }
+
+    .upload-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .upload-text {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    .upload-hint {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.85rem;
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        letter-spacing: 0.15em;
+      }
+      .gallery {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <header>
+    <h1>Feliz Navidad</h1>
+    <p class="subtitle">Elige las flores que quieres ver</p>
+  </header>
+
+  <div class="gallery">
+    <!-- Flores Moradas -->
+    <a href="flores-moradas.html" class="card">
+      <div class="card-preview purple"></div>
+      <div class="card-body">
+        <div class="card-title">Flores Moradas</div>
+        <div class="card-desc">
+          Animación de flores púrpuras que florecen bajo la noche. Incluye música de fondo y mensaje navideño.
         </div>
-        <div class="flower__line">
-          <div class="flower__line__leaf flower__line__leaf--1"></div>
-          <div class="flower__line__leaf flower__line__leaf--2"></div>
-          <div class="flower__line__leaf flower__line__leaf--3"></div>
-          <div class="flower__line__leaf flower__line__leaf--4"></div>
-          <div class="flower__line__leaf flower__line__leaf--5"></div>
-          <div class="flower__line__leaf flower__line__leaf--6"></div>
-        </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="flower flower--2">
-        <div class="flower__leafs flower__leafs--2">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__white-circle"></div>
-
-          <div class="flower__light flower__light--1"></div>
-          <div class="flower__light flower__light--2"></div>
-          <div class="flower__light flower__light--3"></div>
-          <div class="flower__light flower__light--4"></div>
-          <div class="flower__light flower__light--5"></div>
-          <div class="flower__light flower__light--6"></div>
-          <div class="flower__light flower__light--7"></div>
-          <div class="flower__light flower__light--8"></div>
+    <!-- Árbol de Navidad (partículas) -->
+    <a href="arbol-navidad.html" class="card">
+      <div class="card-preview tree"></div>
+      <div class="card-body">
+        <div class="card-title">Árbol de Partículas</div>
+        <div class="card-desc">
+          Árbol interactivo de partículas con nieve cayendo. Mueve el mouse para interactuar con él.
         </div>
-        <div class="flower__line">
-          <div class="flower__line__leaf flower__line__leaf--1"></div>
-          <div class="flower__line__leaf flower__line__leaf--2"></div>
-          <div class="flower__line__leaf flower__line__leaf--3"></div>
-          <div class="flower__line__leaf flower__line__leaf--4"></div>
-        </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="flower flower--3">
-        <div class="flower__leafs flower__leafs--3">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__white-circle"></div>
-
-          <div class="flower__light flower__light--1"></div>
-          <div class="flower__light flower__light--2"></div>
-          <div class="flower__light flower__light--3"></div>
-          <div class="flower__light flower__light--4"></div>
-          <div class="flower__light flower__light--5"></div>
-          <div class="flower__light flower__light--6"></div>
-          <div class="flower__light flower__light--7"></div>
-          <div class="flower__light flower__light--8"></div>
+    <!-- Árbol ASCII -->
+    <a href="arbol-ascii.html" class="card">
+      <div class="card-preview ascii"></div>
+      <div class="card-body">
+        <div class="card-title">Árbol ASCII</div>
+        <div class="card-desc">
+          Árbol 3D hecho de miles de caracteres ASCII con luces, regalos, estrella dorada y nieve. Incluye música.
         </div>
-        <div class="flower__line">
-          <div class="flower__line__leaf flower__line__leaf--1"></div>
-          <div class="flower__line__leaf flower__line__leaf--2"></div>
-          <div class="flower__line__leaf flower__line__leaf--3"></div>
-          <div class="flower__line__leaf flower__line__leaf--4"></div>
-        </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="grow-ans" style="--d: 1.2s">
-        <div class="flower__g-long">
-          <div class="flower__g-long__top"></div>
-          <div class="flower__g-long__bottom"></div>
+    <!-- Lirios ASCII -->
+    <a href="lirios-ascii.html" class="card">
+      <div class="card-preview lilies"></div>
+      <div class="card-body">
+        <div class="card-title">Lirios ASCII</div>
+        <div class="card-desc">
+          Ramo de lirios que se abren lentamente. Hecho completamente con caracteres ASCII. Incluye música.
         </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="growing-grass">
-        <div class="flower__grass flower__grass--1">
-          <div class="flower__grass--top"></div>
-          <div class="flower__grass--bottom"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-          <div class="flower__grass__overlay"></div>
+    <!-- Flor Geométrica -->
+    <a href="flor-geometrica.html" class="card">
+      <div class="card-preview geo"></div>
+      <div class="card-body">
+        <div class="card-title">Flor Geométrica</div>
+        <div class="card-desc">
+          Flor dibujada con curvas matemáticas en canvas. Clic para reiniciar la animación. Incluye música.
         </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="growing-grass">
-        <div class="flower__grass flower__grass--2">
-          <div class="flower__grass--top"></div>
-          <div class="flower__grass--bottom"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-          <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-          <div class="flower__grass__overlay"></div>
+    <!-- Corazón de Partículas -->
+    <a href="corazon-particulas.html" class="card">
+      <div class="card-preview heart"></div>
+      <div class="card-body">
+        <div class="card-title">Corazón de Partículas</div>
+        <div class="card-desc">
+          Corazón 3D formado por partículas que se ensamblan. Puedes rotarlo con el mouse. Incluye música.
         </div>
+        <div class="card-btn">Ver animación →</div>
       </div>
+    </a>
 
-      <div class="grow-ans" style="--d: 2.4s">
-        <div class="flower__g-right flower__g-right--1">
-          <div class="leaf"></div>
+    <!-- Placeholder -->
+    <div class="card" style="opacity: 0.5; cursor: default;">
+      <div class="card-preview"></div>
+      <div class="card-body">
+        <div class="card-title">Más animaciones</div>
+        <div class="card-desc">
+          Aquí aparecerán nuevas animaciones cuando las agregues.
         </div>
-      </div>
-
-      <div class="grow-ans" style="--d: 2.8s">
-        <div class="flower__g-right flower__g-right--2">
-          <div class="leaf"></div>
-        </div>
-      </div>
-
-      <div class="grow-ans" style="--d: 2.8s">
-        <div class="flower__g-front">
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__line"></div>
-        </div>
-      </div>
-
-      <div class="grow-ans" style="--d: 3.2s">
-        <div class="flower__g-fr">
-          <div class="leaf"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
-          <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--0">
-        <div class="grow-ans" style="--d: 3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 2.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--1">
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.8s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--2">
-        <div class="grow-ans" style="--d: 4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--3">
-        <div class="grow-ans" style="--d: 4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--4">
-        <div class="grow-ans" style="--d: 4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--5">
-        <div class="grow-ans" style="--d: 4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--6">
-        <div class="grow-ans" style="--d: 4.2s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.4s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.6s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 4.8s">
-          <div class="leaf leaf--3"></div>
-        </div>
-      </div>
-
-      <div class="long-g long-g--7">
-        <div class="grow-ans" style="--d: 3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.5s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d: 3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="card-btn" style="background: #444; opacity: 0.6;">Próximamente</div>
       </div>
     </div>
-    <script src="purple-flowers.js"></script>
-  </body>
+  </div>
+
+  <!-- Sección para agregar más -->
+  <div class="add-section">
+    <h2>Subir más animaciones</h2>
+    <p>
+      Puedes agregar nuevas animaciones. 
+      Coloca los archivos HTML, CSS y JS en la misma carpeta y avísame para incluirlos en esta página.
+    </p>
+
+    <label class="upload-area" id="uploadZone">
+      <input type="file" id="fileInput" accept=".html,.css,.js,.png,.jpg,.jpeg,.gif,.webp" multiple />
+      <span class="upload-icon">📁</span>
+      <div class="upload-text">Haz clic o arrastra tus archivos aquí</div>
+      <div class="upload-hint">HTML, CSS, JS o imágenes de flores</div>
+    </label>
+
+    <div id="fileList" style="margin-top: 20px; text-align: left; font-size: 0.9rem;"></div>
+  </div>
+
+  <footer>
+    Hecho con 💜 para esta Navidad
+  </footer>
+
+  <script>
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+
+    // Drag & drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      uploadZone.addEventListener(eventName, e => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      uploadZone.addEventListener(eventName, () => uploadZone.classList.add('dragover'));
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      uploadZone.addEventListener(eventName, () => uploadZone.classList.remove('dragover'));
+    });
+
+    uploadZone.addEventListener('drop', e => {
+      const files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+
+    fileInput.addEventListener('change', () => {
+      handleFiles(fileInput.files);
+    });
+
+    function handleFiles(files) {
+      if (!files.length) return;
+
+      let html = '<strong style="opacity:0.9">Archivos seleccionados:</strong><ul style="margin-top:10px; padding-left:20px;">';
+      for (let file of files) {
+        html += `<li style="margin-bottom:6px;">${file.name} <span style="opacity:0.5">(${(file.size/1024).toFixed(1)} KB)</span></li>`;
+      }
+      html += '</ul><p style="margin-top:12px; opacity:0.7; font-size:0.85rem;">Estos archivos se quedan solo en tu navegador. Para que aparezcan en la galería, necesitas colocarlos en la carpeta del proyecto y avisar.</p>';
+      fileList.innerHTML = html;
+    }
+  </script>
+</body>
 </html>
